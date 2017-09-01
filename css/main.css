@@ -1,0 +1,49 @@
+/* 清除浏览器的一些默认行为 */
+html{
+	font-size: 625%;
+}
+ body {
+ 	font-size: .14rem;
+ 	color: #333;
+ 	font-family: normal normal normal normal 16px / normal Arial, Helvetica, sans-serif;
+}
+html,body{
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+body,html,h1,p,ul,h2,h3,h4,article,section,select,input,ol,li,dd,tt{
+ 	margin: 0;
+ 	padding: 0;
+}
+ ul,ol,li{
+ 	list-style: none;
+ }
+ div,section,article,header,footer{
+ 	box-sizing: border-box;
+ }
+input {
+ 	text-indent: 0;
+ 	background: transparent;
+ 	border: 0 none;
+ 	resize: none;
+ 	outline: none;
+ 	/*清除选中效果的默认蓝色边框 */
+ 	-webkit-appearance: none;
+ 	/*清除浏览器默认的样式 */
+ 	line-height: normal; //光标问题 
+ }
+ input::-webkit-input-placeholder {
+ 	/* WebKit browsers */
+ 	line-height: 0.44rem; //placeholder
+ }
+ input:focus {
+ 	color: #8b8791;
+ }
+ /* 自定义class取消滚动条 */
+ .cancel-scroll-bar{
+ 	margin-right: -20px;
+	padding-right: 20px;
+	-webkit-overflow-scrolling: touch;
+ }
+ ::-webkit-scrollbar{ display: none }
