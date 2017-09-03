@@ -1,0 +1,5 @@
+[
+{"id":"index","label":"首页","icon":"./image/tabBottom/index.png"},
+{"id":"shopCar","label":"购物车","icon":"./image/tabBottom/car.png"},
+{"id":"custom","label":"首页","icon":"./image/tabBottom/me.png"}
+]
