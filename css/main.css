@@ -74,7 +74,7 @@ input::-webkit-input-placeholder{
 	position: relative;
 }
 .hi-life-index>header{
-	position: absolute;
+	position: fixed;
 	display: -webkit-box;      /* 老版本 - 适配iOS 6-, Safari 3.1-6 */
 	display: -webkit-flex;     /* 新版本 - 适配Chrome */
 	display: flex;
@@ -109,6 +109,7 @@ input::-webkit-input-placeholder{
 .search-bar{
 	flex: auto;
 	padding: .05rem 0;
+	box-sizing:border-box;
 }
 .search-bar-tool{
 	height: 100%;
@@ -118,7 +119,7 @@ input::-webkit-input-placeholder{
 	border-radius: .3rem;
 	background-color:#FFAD59 ;
 }
-/*.search-bar-tool:before{
+.search-bar-tool:before{
 	content: '';
 	left: .07rem;
 	top: 50%;
@@ -128,10 +129,10 @@ input::-webkit-input-placeholder{
 	background: url("../image/home_search@3x.png") no-repeat no-repeat;
 	background-size: 100% 100%;
 	transform: translateY(-50%);
-}*/
+}
 .search-bar-tool input{
 	height: 90%;
-	width: 100%;
+	width: 90%;
 	vertical-align: top;
 }
 .search-bar-tool input::-webkit-input-placeholder{
