@@ -94,7 +94,7 @@ input::-webkit-input-placeholder{
 	padding-right: .3rem;
 	position: relative;
 }
-.seat:after{
+/*.seat:after{
 	content: '';
 	width: .2rem;
 	height: .2rem;
@@ -104,7 +104,7 @@ input::-webkit-input-placeholder{
 	position: absolute;
 	background: url("../image/home_address_open@3x.png") no-repeat no-repeat;
 	background-size: 100% 100%;
-}
+}*/
 /* 搜索*/
 .search-bar{
 	flex: auto;
