@@ -81,22 +81,21 @@ input::-webkit-input-placeholder{
 	background-color:#FF8D21;
 	width: 100%;
 	top: 0;
-	left: 0;
-	right: 0;
 	height: .4rem;
 }
 /* 定位*/
 .seat{
 	color: white;
-	width: .76rem;
+	width: .7rem;
+	line-height: .4rem;
 	text-align: right;
-	padding-right: .3rem;
+	padding-right: .24rem;
 	position: relative;
 }
 .seat:after{
 	content: '';
-	width: .2rem;
-	height: .2rem;
+	width: .16rem;
+	height: .16rem;
 	right: .05rem;
 	top: 50%;	
 	transform: translateY(-50%);
