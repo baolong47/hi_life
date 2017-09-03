@@ -31,11 +31,11 @@ input {
  	/*清除选中效果的默认蓝色边框 */
  	-webkit-appearance: none;
  	/*清除浏览器默认的样式 */
- 	line-height: normal; //光标问题 
+ 	line-height: normal; 
  }
- input::-webkit-input-placeholder {
+input::-webkit-input-placeholder{
  	/* WebKit browsers */
- 	line-height: 0.44rem; //placeholder
+ 	color: #999;
  }
  input:focus {
  	color: #8b8791;
@@ -47,3 +47,117 @@ input {
 	-webkit-overflow-scrolling: touch;
  }
  ::-webkit-scrollbar{ display: none }
+/* 底部tab选中的样式*/
+.mint-tabbar > .mint-tab-item{
+	color:#999999;
+}
+.mint-tabbar > .mint-tab-item.is-selected{
+	color:#FF8D21;
+}
+/* */
+#main,.content{
+	height: 100%;
+	width: 100%;
+}
+/* 底部固定*/
+.tabBottom{
+	position: fixed;
+}
+/*.content*/
+.content{
+	padding-bottom: .55rem;
+}
+/* 首页样式 */
+.hi-life-index{
+	height: 100%;
+	padding-top: .4rem;
+	position: relative;
+}
+.hi-life-index>header{
+	position: absolute;
+	display: -webkit-box;      /* 老版本 - 适配iOS 6-, Safari 3.1-6 */
+	display: -webkit-flex;     /* 新版本 - 适配Chrome */
+	display: flex;
+	background-color:#FF8D21;
+	width: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: .4rem;
+	line-height: .4rem;
+}
+/* 定位*/
+.seat{
+	color: white;
+	width: .76rem;
+	text-align: right;
+	padding-right: .3rem;
+	position: relative;
+}
+.seat:after{
+	content: '';
+	width: .2rem;
+	height: .2rem;
+	right: .05rem;
+	top: 50%;	
+	transform: translateY(-50%);
+	position: absolute;
+	background: url("../image/home_address_open@3x.png") no-repeat no-repeat;
+	background-size: 100% 100%;
+}
+/* 搜索*/
+.search-bar{
+	flex: auto;
+	padding: .05rem 0;
+}
+.search-bar-tool{
+	height: 100%;
+	width: 100%;
+	position: relative;
+	padding-left: .3rem;
+	border-radius: .3rem;
+	background-color:#FFAD59 ;
+}
+.search-bar-tool:before{
+	content: '';
+	left: .07rem;
+	top: 50%;
+	width: .16rem;
+	height: .16rem;
+	position: absolute;
+	background: url("../image/home_search@3x.png") no-repeat no-repeat;
+	background-size: 100% 100%;
+	transform: translateY(-50%);
+}
+.search-bar-tool input{
+	height: 100%;
+	width: 100%;
+	vertical-align: top;
+}
+.search-bar-tool input::-webkit-input-placeholder{
+	color: #FFFFFF;
+}
+.notice{
+	width:.5rem;
+	padding: .05rem 0;
+	text-align: center;
+}
+.notice-img{
+	display: inline-block;
+	height: .3rem;
+	width: .3rem;
+	background: url("../image/home_notice@3x.png") no-repeat no-repeat;
+	background-size: 100% 100%;
+}
+/* 首页内容区*/
+.hi-life-index-content{
+	height: 100%;
+	overflow: auto;
+}
+.swiper-view{
+	height: 1.4rem;
+}
+.mint-swipe-item img{
+	height: 100%;
+	width: 100%;
+}
