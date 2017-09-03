@@ -117,7 +117,6 @@ input::-webkit-input-placeholder{
 	padding-left: .3rem;
 	border-radius: .3rem;
 	background-color:#FFAD59 ;
-	border: 1px solid red;
 }
 .search-bar-tool:before{
 	content: '';
