@@ -94,7 +94,7 @@ input::-webkit-input-placeholder{
 	padding-right: .3rem;
 	position: relative;
 }
-/*.seat:after{
+.seat:after{
 	content: '';
 	width: .2rem;
 	height: .2rem;
@@ -104,7 +104,7 @@ input::-webkit-input-placeholder{
 	position: absolute;
 	background: url("../image/home_address_open@3x.png") no-repeat no-repeat;
 	background-size: 100% 100%;
-}*/
+}
 /* 搜索*/
 .search-bar{
 	flex: auto;
@@ -118,7 +118,7 @@ input::-webkit-input-placeholder{
 	border-radius: .3rem;
 	background-color:#FFAD59 ;
 }
-.search-bar-tool:before{
+/*.search-bar-tool:before{
 	content: '';
 	left: .07rem;
 	top: 50%;
@@ -128,7 +128,7 @@ input::-webkit-input-placeholder{
 	background: url("../image/home_search@3x.png") no-repeat no-repeat;
 	background-size: 100% 100%;
 	transform: translateY(-50%);
-}
+}*/
 .search-bar-tool input{
 	height: 90%;
 	width: 100%;
