@@ -106,6 +106,7 @@ input::-webkit-input-placeholder{
 /* 搜索*/
 .search-bar{
 	flex: auto;
+	height: 100%;
 	padding: .05rem 0;
 	box-sizing:border-box;
 }
@@ -116,6 +117,7 @@ input::-webkit-input-placeholder{
 	padding-left: .3rem;
 	border-radius: .3rem;
 	background-color:#FFAD59 ;
+	border: 1px solid red;
 }
 .search-bar-tool:before{
 	content: '';
