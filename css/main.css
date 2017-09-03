@@ -130,7 +130,7 @@ input::-webkit-input-placeholder{
 	transform: translateY(-50%);
 }
 .search-bar-tool input{
-	height: 100%;
+	height: 90%;
 	width: 100%;
 	vertical-align: top;
 }
