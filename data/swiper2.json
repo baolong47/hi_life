@@ -1,0 +1,17 @@
+[
+    {
+        "id": "swiper2-1",
+        "label": "",
+        "imgUrl": "./image/swiper/swiper2-1.png"
+    },
+    {
+        "id": "swiper2-2",
+        "label": "",
+        "imgUrl": "./image/swiper/swiper2.jpg"
+    },
+    {
+        "id": "swiper2-3",
+        "label": "",
+        "imgUrl": "./image/swiper/swiper3.jpg"
+    }
+]
