@@ -6,7 +6,8 @@ routes:[
 		{path:'/index',component:index,name:'index'},
 		{path:'/shopCar',component:shopCar,name:'shopCar'},
 		{path:'/custom',component:custom,name:'custom'}
-	]}
+	]},
+	{path:'/search',component:search,name:'search'}
 	]
 });
 new Vue({

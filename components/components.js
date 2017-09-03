@@ -32,11 +32,17 @@ var main ={
 var index = {
 	template : '<section class="hi-life-index">'
 			  +'<header><div class="seat">深圳</div>'
-			  +'<div class="search-bar"><div class="search-bar-tool"><input type="text" placeholder="搜索"></div></div>'
+			  +'<div class="search-bar"><div class="search-bar-tool"><input type="text" placeholder="搜索" @click.prevent="toSearch"></div></div>'
 			  +'<div class="notice"><i class="notice-img"></i></div></header>'
 			  +'<section class="hi-life-index-content">'
 			  +'<swiper-view></swiper-view>'
-			  +'</section></section>'
+			  +'<fenlei-view></fenlei-view>'
+			  +'</section></section>',
+	methods : {
+		toSearch : function(){
+			this.$router.push({name:"search"});  // 跳转到搜索页面
+		}
+	}
 }
 var shopCar = {
 	template : '<div>购物车</div>'
@@ -62,6 +68,29 @@ var swiper = Vue.component('swiper-view',{
 		})
 		.catch(function(){
 			_this.$toast("请求失败!");
+		});
+	}
+})
+/* 搜索页面 */
+var search ={
+	template : '<div>搜索</div>'
+}
+/* 分类模块 */
+var fenlei = Vue.component('fenlei-view',{
+	data(){
+		return {
+			fenleiJson :null	
+		}
+	},
+	template : '<div class="fenlei"><div class="fenlei-item" v-for="(item,key) in fenleiJson"><img :src="item.icon"><p>{{item.label}}</p></div></div>',
+	created : function(){
+		var _this = this;
+		axios.get('./data/fenleiJson.json')
+		.then(function(response){
+			_this.fenleiJson = response.data;
+		})
+		.catch(function(){
+			_this.$toast("加载数据失败!");
 		});
 	}
 })

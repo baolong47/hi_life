@@ -1,0 +1,12 @@
+[
+{"id":"1","label":"汽车","icon":"./image/fenlei/home_classify_car@3x.png"},
+{"id":"1","label":"酒店","icon":"./image/fenlei/home_classify_hotel@3x.png"},
+{"id":"1","label":"超市","icon":"./image/fenlei/home_classify_supermarket@3x.png"},
+{"id":"1","label":"零售","icon":"./image/fenlei/home_classify_retail@3x.png"},
+{"id":"1","label":"餐饮","icon":"./image/fenlei/home_classify_food@3x.png"},
+{"id":"1","label":"生鲜","icon":"./image/fenlei/home_classify_fresh@3x.png"},
+{"id":"1","label":"服装","icon":"./image/fenlei/home_classify_clothing@3x.png"},
+{"id":"1","label":"丽人","icon":"./image/fenlei/home_classify_beauty@3x.png"},
+{"id":"1","label":"待定","icon":"./image/fenlei/home_classify_other@3x.png"},
+{"id":"1","label":"待定","icon":"./image/fenlei/home_classify_other2@3x.png"}
+]

@@ -154,10 +154,31 @@ input::-webkit-input-placeholder{
 	height: 100%;
 	overflow: auto;
 }
+/* 轮播图*/
 .swiper-view{
 	height: 1.4rem;
 }
 .mint-swipe-item img{
 	height: 100%;
 	width: 100%;
+}
+/* 分类模块*/
+.fenlei{
+	height: 1.86rem;
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: center;
+}
+.fenlei-item{
+	width: 20%;
+	text-align: center;
+}
+.fenlei-item img{
+	height: .45rem;
+	width: .45rem;
 }
