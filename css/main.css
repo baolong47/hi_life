@@ -4,7 +4,7 @@ html{
 }
  body {
  	font-size: .14rem;
- 	color: #333;
+ 	color: #999999;
  	font-family: normal normal normal normal 16px / normal Arial, Helvetica, sans-serif;
 }
 html,body{
@@ -44,6 +44,15 @@ input::-webkit-input-placeholder{
  input:focus {
  	color: #8b8791;
  }
+ /* 除去a点击时背景 */
+a,a:hover,a:active,a:visited,a:link,a:focus{
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+	color: black;
+	outline:none;
+	background: none;
+	text-decoration: none;
+}
  /* 自定义class取消滚动条 */
  .cancel-scroll-bar{
  	margin-right: -20px;
@@ -134,7 +143,7 @@ input::-webkit-input-placeholder{
 	transform: translateY(-50%);
 }
 .search-bar-tool input{
-	height: 90%;
+	height: 100%;
 	width: 90%;
 	vertical-align: top;
 }
@@ -157,6 +166,7 @@ input::-webkit-input-placeholder{
 .hi-life-index-content{
 	height: 100%;
 	overflow: auto;
+	-webkit-overflow-scrolling: touch;
 }
 /* 轮播图*/
 .swiper-view{
@@ -180,6 +190,7 @@ input::-webkit-input-placeholder{
 }
 .fenlei-item{
 	width: 20%;
+	color: #333333;
 	text-align: center;
 }
 .fenlei-item img{
@@ -209,4 +220,52 @@ input::-webkit-input-placeholder{
 /* 分割线*/
 hr{
 	border: .04rem solid #F5F5F5;
+}
+/* 附近的商家*/
+.nearly-store{
+	padding-bottom: .3rem;
+}
+.nearly-store-title{
+	height: .3rem;
+	line-height: .3rem;
+	text-align: center;
+}
+.nearly-store-item{
+	height: 1.2rem;
+	padding-left:.15rem;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+.nearly-store-item-img{
+	flex-shrink:0;
+	width: .9rem;
+	padding: .15rem 0;
+	border-bottom: .01rem solid lightgray;
+}
+.nearly-store-item-detail{
+	flex: auto;
+	padding: .15rem .1rem;
+	border-bottom: .01rem solid lightgray;
+}
+.store-distance{
+	float: right;
+	font-weight: normal;
+}
+.nearly-store-summary{
+	height: .44rem;
+	width: 100%;
+	font-size: .12rem;
+	padding: .03rem 0;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+.nearly-store-sales span{
+	color: #FF8D21;
+}
+.nearly-store-name{
+	height: .24rem;
 }

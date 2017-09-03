@@ -33,7 +33,8 @@ var index = {
 	data(){
 		return {
 			swiper1:'./data/swiper1.json',
-			swiper2:'./data/swiper2.json'
+			swiper2:'./data/swiper2.json',
+			nearlyStore:null
 		}
 	},
 	template : '<section class="hi-life-index">'
@@ -49,11 +50,27 @@ var index = {
 			  +'<div class="advertisement-item"><img src="./image/advertisement/guanggao2.png"></div>'
 			  +'<div class="advertisement-item"><img src="./image/advertisement/guanggao3.png"></div></section>'
 			  +'<hr/>'
+			  +'<section class="nearly-store">'
+			  +'<header class="nearly-store-title">附近的商家</header>'
+			  +'<div class="nearly-store-item" v-for="(item,key) in nearlyStore"><div class="nearly-store-item-img"><img :src="item.img"></div>'
+			  +'<div class="nearly-store-item-detail"><h3 class="nearly-store-name">{{item.title}}<span class="store-distance">{{item.distance}}</span></h3>'
+			  +'<div class="nearly-store-summary">{{item.summary}}</div><div class="nearly-store-sales">销量:<span>{{item.sales}}</span></div></div></div>'
+			  +'</section>'
 			  +'</section></section>',
 	methods : {
 		toSearch : function(){
 			this.$router.push({name:"search"});  // 跳转到搜索页面
 		}
+	},
+	created : function(){
+		var _this =this;
+		axios.get('./data/nearlyStore.json')
+		.then(function(response){
+			_this.nearlyStore = response.data;
+		})
+		.catch(function(){
+			_this.$toast("加载附近商家数据失败!");
+		})
 	}
 }
 /* 购物车 页面*/
