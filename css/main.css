@@ -248,12 +248,15 @@ hr{
 	padding: .15rem .1rem;
 	border-bottom: .01rem solid lightgray;
 }
-.store-distance{
+.nearly-store-name{
+	color: black;
+}
+.nearly-store-name .store-distance{
 	float: right;
+	color: #999999;
 	font-weight: normal;
 }
 .nearly-store-summary{
-	height: .44rem;
 	width: 100%;
 	font-size: .12rem;
 	padding: .03rem 0;
