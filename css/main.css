@@ -295,13 +295,15 @@ hr{
 }
 .notice-list{
 	height: 100%;
-	padding: 0 .1rem;
+	padding: 0 0 0 .1rem;
+	padding-bottom: .2rem;
 	overflow: auto;
 	-webkit-overflow-scrolling: touch;
 }
 .notice-item{
 	height: .9rem;
 	padding: .1rem 0;
+	padding-right: .1rem;
 	border-bottom: .01rem solid lightgray;
 }
 .notice-title{
