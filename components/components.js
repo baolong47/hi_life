@@ -40,7 +40,7 @@ var index = {
 	template : '<section class="hi-life-index">'
 			  +'<header><div class="seat">深圳</div>'
 			  +'<div class="search-bar"><div class="search-bar-tool"><input type="text" placeholder="搜索" @click.prevent="toSearch"></div></div>'
-			  +'<div class="notice"><i class="notice-img"></i></div></header>'
+			  +'<div class="notice"><i class="notice-img" @click="toNotice"></i></div></header>'
 			  +'<section class="hi-life-index-content">'
 			  +'<swiper-view :swiperUrl="swiper1"></swiper-view>'
 			  +'<fenlei-view></fenlei-view>'
@@ -60,6 +60,9 @@ var index = {
 	methods : {
 		toSearch : function(){
 			this.$router.push({name:"search"});  // 跳转到搜索页面
+		},
+		toNotice : function(){
+			this.$router.push({name:'notice'});  // 跳转到通知页
 		}
 	},
 	created : function(){
@@ -132,4 +135,46 @@ var fenlei = Vue.component('fenlei-view',{
 			this.$toast("加载分类详情页");
 		}
 	}
+})
+/* 公告页面 */
+var notice ={
+	data(){
+		return {
+			noticeJson :null
+		}
+	},
+	template :'<div class="notice-view"><header-view></header-view>'
+			 +'<section class="notice-list">'
+			 +'<div class="notice-item" v-for="(item,key) in noticeJson">'
+			 +'<h3 class="notice-title"><span class="notice-name">{{item.title}}</span><time class="pub-date">{{item.dateTime}}</time></h3>'
+			 +'<article class="item-summary">{{item.content}}</article>'
+			 +'</div>'
+			 +'</section></div>',
+ 	created:function(){
+ 		var _this =this;
+ 		axios.get('./data/notice.json')
+ 		.then(function(response){
+ 			_this.noticeJson = response.data;
+ 		})
+ 		.catch(function(){
+ 			_this.$toast("加载公告失败!");
+ 		});
+ 	}
+}
+var noticeContent ={
+	template :'<div>公告内容</div>'
+}
+/* 声明一个头部组件 */
+var headerComponent = Vue.component('header-view',{
+	data(){
+		return {
+			pageTitle:"公告"	,
+			name:""
+		}
+	},
+	template :'<mt-header fixed :title="pageTitle">'
+				+'<router-link :to="name" slot="left">'
+			    	+'<mt-button icon="back"></mt-button>'
+			  	+'</router-link>'
+			  +'</mt-header>'
 })

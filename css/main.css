@@ -67,6 +67,15 @@ a,a:hover,a:active,a:visited,a:link,a:focus{
 .mint-tabbar > .mint-tab-item.is-selected{
 	color:#FF8D21;
 }
+/* 重写mint-ui头部样式 */
+.mint-header{
+	color:#FFFFFF;
+	background: -webkit-linear-gradient(left , rgb(255,161,38), rgb(255,139,32)); /* Safari 5.1 - 6.0 */
+    background: linear-gradient(to right, rgb(255,161,38), rgb(255,139,32)); /* 标准的语法（必须放在最后） */
+}
+.mint-header a{
+	color:#FFFFFF;
+}
 /* */
 #main,.content{
 	height: 100%;
@@ -92,6 +101,8 @@ a,a:hover,a:active,a:visited,a:link,a:focus{
 	display: -webkit-flex;     /* 新版本 - 适配Chrome */
 	display: flex;
 	background-color:#FF8D21;
+	background: -webkit-linear-gradient(left , rgb(255,161,38), rgb(255,139,32)); 
+    background: linear-gradient(to right, rgb(255,161,38), rgb(255,139,32)); 
 	width: 100%;
 	top: 0;
 	height: .4rem;
@@ -275,4 +286,51 @@ hr{
 }
 .nearly-store-name{
 	height: .24rem;
+}
+/* 公告页 */
+.notice-view{
+	height: 100%;
+	width: 100%;
+	padding-top: .4rem;
+}
+.notice-list{
+	height: 100%;
+	padding: 0 .1rem;
+}
+.notice-item{
+	height: .9rem;
+	padding: .1rem 0;
+	border-bottom: .01rem solid lightgray;
+}
+.notice-title{
+	display: flex;
+	color: #333;
+	align-items: flex-end;
+	font-size: .14rem;
+	
+}
+.notice-title .notice-name{
+	flex: auto;
+	padding-right: .1rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.notice-title time{
+	color: #999999;
+	width: 1.2rem;
+	text-align: right;
+	vertical-align: bottom;
+	white-space: nowrap;
+	font-size: .12rem;
+	font-weight: normal;
+}
+.item-summary{
+	font-size: .12rem;
+	margin-top: .1rem;
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
 }

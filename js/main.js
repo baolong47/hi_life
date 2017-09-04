@@ -5,9 +5,14 @@ routes:[
 		{path:'/',component:index},
 		{path:'/index',component:index,name:'index'},
 		{path:'/shopCar',component:shopCar,name:'shopCar'},
-		{path:'/custom',component:custom,name:'custom'}
+		{path:'/custom',component:custom,name:'custom'},
 	]},
-	{path:'/search',component:search,name:'search'}
+	{path:'/search',component:search,name:'search'},
+	{path:'/notice',component:notice,name:'notice',
+		children:[
+			{path:"/notice/*",component:noticeContent,name:'noticeContent'}
+		]
+		}
 	]
 });
 new Vue({
