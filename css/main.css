@@ -296,6 +296,8 @@ hr{
 .notice-list{
 	height: 100%;
 	padding: 0 .1rem;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
 }
 .notice-item{
 	height: .9rem;
