@@ -73,6 +73,9 @@ a,a:hover,a:active,a:visited,a:link,a:focus{
 	background: -webkit-linear-gradient(left , rgb(255,161,38), rgb(255,139,32)); /* Safari 5.1 - 6.0 */
     background: linear-gradient(to right, rgb(255,161,38), rgb(255,139,32)); /* 标准的语法（必须放在最后） */
 }
+.mint-header-title,.mintui{
+	font-size: .18rem ;
+}
 .mint-header a{
 	color:#FFFFFF;
 }
