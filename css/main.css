@@ -341,3 +341,18 @@ hr{
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 }
+/* 公告内容页 */
+.notice-context-view{
+	padding-top: .4rem;
+	height: 100%;
+}
+.notice-context{
+	height: 100%;
+	padding: .1rem;
+	overflow: auto;
+	text-indent: .28rem;
+	-webkit-overflow-scrolling: touch;
+}
+.notice-context p{
+	padding-bottom:.3rem ;
+}

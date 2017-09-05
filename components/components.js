@@ -140,12 +140,13 @@ var fenlei = Vue.component('fenlei-view',{
 var notice ={
 	data(){
 		return {
-			noticeJson :null
+			noticeJson :null,
+			title:"公告"
 		}
 	},
-	template :'<div class="notice-view"><header-view></header-view>'
+	template :'<div class="notice-view"><header-view :title="title"></header-view>'
 			 +'<section class="notice-list">'
-			 +'<div class="notice-item" v-for="(item,key) in noticeJson">'
+			 +'<div class="notice-item" v-for="(item,key) in noticeJson" @click="toNoticeContent(item.id)">'
 			 +'<h3 class="notice-title"><span class="notice-name">{{item.title}}</span><time class="pub-date">{{item.dateTime}}</time></h3>'
 			 +'<article class="item-summary">{{item.content}}</article>'
 			 +'</div>'
@@ -159,22 +160,52 @@ var notice ={
  		.catch(function(){
  			_this.$toast("加载公告失败!");
  		});
+ 	},
+ 	methods:{
+ 		toNoticeContent : function(val){
+ 			var url = this.$route.fullPath+"/"+val;
+ 			this.$router.push({path:url});
+ 		}
  	}
 }
 var noticeContent ={
-	template :'<div>公告内容</div>'
+	data(){
+		return {
+			title:"",
+			notice:{}
+		}
+	},
+	template :'<div class="notice-context-view"><header-view :title="title"></header-view>'
+			 +'<article class="notice-context" v-html="notice.content"></article>'
+			 +'</div>',
+	created:function(){
+		var _this = this;
+		axios.get('./data/noticeContext.json')
+		.then(function(response){
+			_this.title = response.data.title;
+			_this.notice = response.data;
+		})
+		.catch(function(){
+			_this.$toast("公告信息请求失败！");
+		});
+	}
 }
 /* 声明一个头部组件 */
 var headerComponent = Vue.component('header-view',{
+	props:['title',"routerName"],
 	data(){
 		return {
-			pageTitle:"公告"	,
-			name:""
+			name:"/"+(this.routerName==undefined?"":this.routerName)
 		}
 	},
 	template :'<mt-header fixed :title="pageTitle">'
 				+'<router-link :to="name" slot="left">'
 			    	+'<mt-button icon="back"></mt-button>'
 			  	+'</router-link>'
-			  +'</mt-header>'
+			  +'</mt-header>',
+	computed:{
+		pageTitle:function(){
+			return this.title;
+		}
+	},
 })
