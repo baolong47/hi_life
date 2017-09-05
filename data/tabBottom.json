@@ -1,5 +1,5 @@
 [
 {"id":"index","label":"首页","icon":"./image/tabBottom/tab_home@3x.png","selIcon":"./image/tabBottom/tab_home_sel@3x.png"},
 {"id":"shopCar","label":"购物车","icon":"./image/tabBottom/tab_shopping_cart@3x.png","selIcon":"./image/tabBottom/tab_shopping_cart_sel@3x.png"},
-{"id":"custom","label":"首页","icon":"./image/tabBottom/tab_mine@3x.png","selIcon":"./image/tabBottom/tab_mine_sel@3x.png"}
+{"id":"custom","label":"我的","icon":"./image/tabBottom/tab_mine@3x.png","selIcon":"./image/tabBottom/tab_mine_sel@3x.png"}
 ]

@@ -82,7 +82,27 @@ var shopCar = {
 }
 /* 会员中心页面 */
 var custom = {
-	template : '<div>会员中心</div>'
+	data(){
+		return {
+			memberList:[
+			{id:"1",label:"我的收藏",url:"",icon:"./image/memberCenter/mine_list_collect@3x.png"},
+			{id:"2",label:"我的订单",url:"",icon:"./image/memberCenter/mine_list_order@3x.png"},
+			{id:"3",label:"我的推荐",url:"",icon:"./image/memberCenter/mine_list_recommend@3x.png"},
+			{id:"4",label:"兑换商城",url:"",icon:"./image/memberCenter/mine_list_exchange@3x.png"},
+			{id:"5",label:"我的收益",url:"",icon:"./image/memberCenter/mine_list_profit@3x.png"}]
+		}
+	},
+	template : '<div class="member-center">'
+			  +'<section class="member-center-banner">'
+			  +'<div class="member-center-user"><img src="./image/memberCenter/user.png"><span>圆滚滚的奶黄包纸</span><i class="icon iconfont icon-set setting-icon"></i></div>'
+			  +'<div class="member-center-fufen">'
+			  +'<div class="fufen-item"><img src="./image/memberCenter/mine_medi_heart@3x.png"><span>福心</span><span>2</span/></div>'
+			  +'<div class="fufen-item"><img src="./image/memberCenter/mine_medi_coin@3x.png"><span>可用福分</span><span>199.99</span></div>'
+			  +'</div></section>'
+			  +'<section class="member-center-list">'
+			  +'<div class="member-center-list-item" v-for="(item,key) in memberList"><img :src="item.icon"><span class="list-title">{{item.label}}</span><span class="icon iconfont icon-more more"></span></div>'
+			  +'</section>'
+			  +'</div>'
 }
 /* 轮播图 */
 var swiper = Vue.component('swiper-view',{

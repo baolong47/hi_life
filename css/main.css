@@ -356,3 +356,107 @@ hr{
 .notice-context p{
 	padding-bottom:.3rem ;
 }
+/* 会员中心 */
+.member-center{
+	height: 100%;
+	width: 100%;
+	background-color: #F5F5F5;
+}
+.member-center-banner{
+	height: 1.62rem;
+	position: relative;
+	padding: .2rem .125rem .4rem .125rem;
+	background: url(../image/memberCenter/mine_top_bg@3x.png) no-repeat no-repeat;
+	background-size: 100% 100%;
+}
+.member-center-user{
+	height: 100%;
+	width: 96%;
+	margin: 0 auto;
+	display: flex;
+	color: #FFFFFF;
+	position: relative;
+	align-items: center;
+}
+.member-center-user img{
+	height: .71rem;
+	width: .71rem;
+	vertical-align: middle;
+	border-radius: 50%;
+	margin-right: .2rem;
+}
+.setting-icon{
+	position: absolute;
+	right: 0;
+	height:.15rem;
+	width: .15rem;
+	font-size: .15rem;
+	line-height: .15rem;
+	text-align: center;
+}
+.member-center-fufen{
+	position: absolute;
+	bottom: 0;
+	height: 1.09rem;
+	width: 96%;
+	left: 50%;
+	z-index: 1;
+	padding: .145rem .125rem;
+	display: flex;
+	line-height: normal;
+	align-items: center;
+	justify-content: center;
+	transform: translate(-50%,50%);
+	background: url(../image/memberCenter/mine_medi_bg_shadow@3x.png) no-repeat no-repeat;
+	background-size: 100% 100%;
+}
+.fufen-item{
+	flex: 1;
+	text-align: center;
+}
+.fufen-item img{
+	height: .21rem;
+	width: .21rem;
+}
+.fufen-item span{
+	display: block;
+	color: #333;
+}
+.fufen-item span:last-child{
+	color: #FF8D21;
+}
+.member-center-list{
+	position: relative;
+	padding:.69rem 0 0 .15rem;
+	background-color: #FFFFFF;
+}
+.member-center-list:before{
+	content: '';
+	position: absolute;
+	width: 100%;
+	left: 0;
+	height: .01rem;
+	background-color: #E5E5E5;
+	z-index: 1;
+}
+.member-center-list-item{
+	height: .55rem;
+	line-height: .55rem;
+	padding-right: .15rem;
+	border-top: .01rem solid #E5E5E5;
+}
+.member-center-list-item:first-child{
+	border-top:none;
+}
+.member-center-list-item img{
+	height: .22rem;
+	width: .22rem;
+	vertical-align: middle;
+	margin-right: .1rem;
+}
+.member-center-list-item .list-title{
+	color: #333;
+}
+.member-center-list-item .more{
+	float: right;
+}
