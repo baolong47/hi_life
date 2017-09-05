@@ -367,8 +367,8 @@ hr{
 	position: relative;
 	padding: .2rem .125rem .4rem .125rem;
 	background: url(../image/memberCenter/mine_top_bg@3x.png) no-repeat no-repeat;
-	-webkit-background-size:100% 100%;
-	background-size: 100% 100%;
+	-webkit-background-size:cover;
+	background-size:cover;
 }
 .member-center-user{
 	height: 100%;
