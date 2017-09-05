@@ -42,7 +42,7 @@ input::-webkit-input-placeholder{
  	color: #999;
  }
  input:focus {
- 	color: #8b8791;
+ 	/*color: #8b8791;*/
  }
  /* 除去a点击时背景 */
 a,a:hover,a:active,a:visited,a:link,a:focus{
@@ -52,6 +52,9 @@ a,a:hover,a:active,a:visited,a:link,a:focus{
 	outline:none;
 	background: none;
 	text-decoration: none;
+}
+.view-background{
+	background-color: #F5F5F5;
 }
  /* 自定义class取消滚动条 */
  .cancel-scroll-bar{
@@ -360,7 +363,7 @@ hr{
 .member-center{
 	height: 100%;
 	width: 100%;
-	/*background-color: #F5F5F5;*/
+	background-color: #F5F5F5;
 }
 .member-center-banner{
 	height: 1.62rem;
@@ -368,7 +371,6 @@ hr{
 	z-index: 1;
 	padding: .2rem .125rem .4rem .125rem;
 	background: url(../image/memberCenter/mine_top_bg@3x.png);
-	background-color: rgba(0,0,0,0);
 	-webkit-background-size:100% 100%;
 	background-size: 100% 100%;
 }
@@ -465,3 +467,84 @@ hr{
 .member-center-list-item .more{
 	float: right;
 }
+/* 我的设置页面 */
+.setting-view{
+	height: 100%;
+	display: flex;
+	position: relative;
+	flex-direction: column;
+}
+.setting-view .mint-header{
+	-webkit-flex-shrink: 0;
+	flex-shrink: 0;
+}
+.set-contaniner{
+	height: 100%;
+	flex: auto;
+	background-color:#F5F5F5 ;
+}
+.setting-list{
+	margin-top: .2rem;
+	padding-left: .15rem;
+	background-color: #FFFFFF;
+}
+.setting-list-item{
+	clear: both;
+	height: .55rem;
+	color: #333;
+	padding-right: .15rem;
+	line-height: .55rem;
+	border-bottom: .01rem solid #E5E5E5;
+}
+.setting-more{
+	float: right;
+	color: #999999;
+}
+.setting-more i{
+	margin-left: .05rem;
+	vertical-align: middle;
+}
+.login-out{
+	position: absolute;
+	bottom: .3rem;
+	width: 3.03rem;
+	height: .45rem;
+	line-height: .45rem;
+	left: 50%;
+	text-align: center;
+	color:rgb(255,161,38) ;
+	transform: translateX(-50%);
+	border-radius: .3rem;
+	border: .01px solid rgb(255,161,38);
+}
+/* 修改昵称页面 */
+.setting-name-view{
+	height: 100%;
+	background-color: #F5F5F5;
+}
+.name-input{
+	position: relative;
+	height: .55rem;
+	padding-left:.15rem;
+	padding-right: .48rem;
+	background-color: #FFFFFF;
+}
+.name-input input{
+	height: 100%;
+	width: 100%;
+}
+.clear-input{
+	position: absolute;
+	right: .18rem;
+	height: .3rem;
+	width: .3rem;
+	top: 50%;
+	transform: translateY(-50%);
+	background:url(../image/selfset/name_set_close@3x.png);
+	background-size: 100% 100%;
+}
+.input-help{
+	padding: .05rem .15rem;
+	font-size: .12rem;
+}
+/* 修改密码页面 */

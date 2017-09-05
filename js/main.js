@@ -9,7 +9,11 @@ var router = new VueRouter({ // 路由要挂载在vue实例上
 		]},
 		{path:'/search',component:search,name:'search'},
 		{path:'/notice',component:notice,name:'notice'},
-		{path:"/notice/*",component:noticeContent,name:'noticeContent'}
+		{path:"/notice/*",component:noticeContent,name:'noticeContent'},
+		{path:'/userSet',component:userSet,name:'userSet'},
+		{path:"/userSet/nameset",component:nameset,name:"nameset"},
+		{path:"/userSet/pswset",component:pswset,name:"pswset"},
+		{path:"/userSet/yhkset",component:yhkset,name:"yhkset"}
 	]
 });
 new Vue({

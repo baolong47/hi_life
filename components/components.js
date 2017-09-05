@@ -14,6 +14,7 @@ var main ={
 			+'</mt-tabbar></div>',
 	created : function(){
 		var _this =this;
+		this.selected = this.$route.name;
 		axios.get('./data/tabBottom.json')
 		.then(function(response){
 			_this.tabJson = response.data;
@@ -89,12 +90,13 @@ var custom = {
 			{id:"2",label:"我的订单",url:"",icon:"./image/memberCenter/mine_list_order@3x.png"},
 			{id:"3",label:"我的推荐",url:"",icon:"./image/memberCenter/mine_list_recommend@3x.png"},
 			{id:"4",label:"兑换商城",url:"",icon:"./image/memberCenter/mine_list_exchange@3x.png"},
-			{id:"5",label:"我的收益",url:"",icon:"./image/memberCenter/mine_list_profit@3x.png"}]
+			{id:"5",label:"我的收益",url:"",icon:"./image/memberCenter/mine_list_profit@3x.png"}],
+			userName:"圆滚滚的奶黄包纸"
 		}
 	},
 	template : '<div class="member-center">'
 			  +'<section class="member-center-banner">'
-			  +'<div class="member-center-user"><img src="./image/memberCenter/user.png"><span>圆滚滚的奶黄包纸</span><i class="icon iconfont icon-set setting-icon"></i></div>'
+			  +'<div class="member-center-user"><img src="./image/memberCenter/user.png" @click="toSetting"><span>{{userName}}</span><i class="icon iconfont icon-set setting-icon" @click="toSetting"></i></div>'
 			  +'<div class="member-center-fufen">'
 			  +'<div class="fufen-item"><img src="./image/memberCenter/mine_medi_heart@3x.png"><span>福心</span><span>2</span/></div>'
 			  +'<div class="fufen-item"><img src="./image/memberCenter/mine_medi_coin@3x.png"><span>可用福分</span><span>199.99</span></div>'
@@ -102,7 +104,12 @@ var custom = {
 			  +'<section class="member-center-list">'
 			  +'<div class="member-center-list-item" v-for="(item,key) in memberList"><img :src="item.icon"><span class="list-title">{{item.label}}</span><span class="icon iconfont icon-more more"></span></div>'
 			  +'</section>'
-			  +'</div>'
+			  +'</div>',
+	methods:{
+		toSetting : function(){
+			this.$router.push({name:'userSet',params:{userName:this.userName}});
+		}
+	}
 }
 /* 轮播图 */
 var swiper = Vue.component('swiper-view',{
@@ -188,6 +195,7 @@ var notice ={
  		}
  	}
 }
+/* 公告内容页面*/
 var noticeContent ={
 	data(){
 		return {
@@ -212,20 +220,140 @@ var noticeContent ={
 }
 /* 声明一个头部组件 */
 var headerComponent = Vue.component('header-view',{
-	props:['title',"routerName"],
+	props:['title',"routerName","fixed","rightText"],
 	data(){
 		return {
-			name:"/"+(this.routerName==undefined?"":this.routerName)
+			name:"/"+(this.routerName==undefined?"":this.routerName),
+			isfixed:this.fixed==undefined?true:this.fixed,
+			rightLabel:this.rightText==undefined?"":this.rightText
 		}
 	},
-	template :'<mt-header fixed :title="pageTitle">'
+	template :'<mt-header :fixed="isfixed" :title="pageTitle">'
 				+'<router-link :to="name" slot="left">'
 			    	+'<mt-button icon="back"></mt-button>'
 			  	+'</router-link>'
+			  	+'<mt-button slot="right" @click="rightTextClick">{{rightLabel}}</mt-button>'
 			  +'</mt-header>',
 	computed:{
 		pageTitle:function(){
 			return this.title;
 		}
 	},
+	methods : {
+		rightTextClick : function(){
+			this.$emit("rightClick");
+		}
+	}
 })
+/* 用户设置页面 */
+var userSet = {
+	data(){
+		return {
+			name:"",
+			psw:"123456",
+			yhk:"13688455785544555",
+			title:"我的设置",
+			fixed:false,
+			userRouter:"nameset",
+			pswRouter:"pswset",
+			yhkRouter:"yhkset"
+			
+		}
+	},
+	template : '<div class="setting-view"><header-view :title="title" :fixed="fixed"></header-view>'
+			  +'<section class="set-contaniner">'
+			  +'<div class="setting-list">'
+			  +'<div class="setting-list-item" @click="setting(userRouter,name)"><span class="setting-label">昵称</span><span class="setting-more">{{name}}<i class="icon iconfont icon-more"></i></span></div>'
+			  +'<div class="setting-list-item" @click="setting(pswRouter,psw)"><span class="setting-label">修改密码</span><span class="setting-more"><i class="icon iconfont icon-more"></i></span></div>'
+			  +'<div class="setting-list-item" @click="setting(pswRouter,yhk)"><span class="setting-label">我的银行卡</span><span class="setting-more"><i class="icon iconfont icon-more"></i></span></div>'
+			  +'</div>'
+			  +'</section>'
+			  +'<footer class="login-out">退出登录</footer>'
+			  +'</div>',
+	created:function(){
+		if(this.$route.params.userName){
+			localStorage.setItem("userName",this.$route.params.userName);
+		}
+		this.name = this.$route.params.userName == undefined?localStorage.userName:this.$route.params.userName;
+	},
+	methods:{
+		setting : function(val,param){
+			this.$router.push({name:val,params:{setparams:param,prev:this.$route.name}});
+		}
+	}
+}
+/* 修改昵称*/
+var nameset ={
+	data(){
+		return {
+			param:"",
+			fixed:false,
+			title:"修改昵称",
+			routerName:"",
+			help:"以英文字母或汉字开头，限6-16个字符",
+			rightText:"确定"
+		}
+	},
+	template :'<div class="setting-name-view"><header-view :title="title" :fixed="fixed" :routerName="routerName" :rightText="rightText" @rightClick="parentEvent"></header-view>'
+			 +'<div class="name-input"><input type="text" v-model="param"><i class="clear-input" v-show="isshow" @click="clear"></i></div>'
+			 +'<div class="input-help">{{help}}</div>'
+			 +'</div>',
+	created:function(){
+		if(this.$route.params.prev != undefined){
+			localStorage.prevName = this.$route.params.prev;
+		}
+		this.param = this.$route.params.setparams==undefined?localStorage.userName:this.$route.params.setparams;
+		this.routerName = this.$route.params.prev==undefined?localStorage.prevName:this.$route.params.prev;
+	},
+	computed:{
+		isshow:function(){
+			if(this.param == ""){
+				return false;
+			}else{
+				return true;
+			}
+		}
+	},
+	methods:{
+		parentEvent : function(){
+			this.$toast("修改成功!");
+			this.$router.push({name:localStorage.prevName});
+		},
+		clear: function(){
+			this.param = "";
+		}
+	}
+}
+/* 修改密码*/
+var pswset ={
+	data(){
+		return {
+			param:"",
+			fixed:false,
+			title:"修改密码",
+			routerName:""
+		}
+	},
+	template :'<div class="setting-psw1 view-background"><header-view :title="title" :fixed="fixed" :routerName="routerName"></header-view>'
+			 +''
+			 +'</div>',
+	created:function(){
+		if(this.$route.params.prev != undefined){
+			localStorage.prevName = this.$route.params.prev;
+		}
+		this.param = this.$route.params.setparams==undefined?localStorage.userName:this.$route.params.setparams;
+		this.routerName = this.$route.params.prev==undefined?localStorage.prevName:this.$route.params.prev;
+	}
+}
+/* 银行卡设置*/
+var yhkset ={
+	data(){
+		return {
+			param:""
+		}
+	},
+	template :'<div>{{param}}</div>',
+	created:function(){
+		this.param = this.$route.params.setparams;
+	}
+}
