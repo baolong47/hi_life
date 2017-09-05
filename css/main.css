@@ -365,8 +365,10 @@ hr{
 .member-center-banner{
 	height: 1.62rem;
 	position: relative;
+	z-index: 1;
 	padding: .2rem .125rem .4rem .125rem;
 	background: url(../image/memberCenter/mine_top_bg@3x.png);
+	background-color: rgb(0,0,0,0);
 	-webkit-background-size:100% 100%;
 	background-size: 100% 100%;
 }
