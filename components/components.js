@@ -14,7 +14,7 @@ var main ={
 			+'</mt-tabbar></div>',
 	created : function(){
 		var _this =this;
-		this.selected = this.$route.name;
+		this.selected = this.$route.name==undefined?"index":this.$route.name;
 		axios.get('./data/tabBottom.json')
 		.then(function(response){
 			_this.tabJson = response.data;
@@ -137,7 +137,29 @@ var swiper = Vue.component('swiper-view',{
 })
 /* 搜索页面 */
 var search ={
-	template : '<div>搜索</div>'
+	data(){
+		return {
+			selected:"1"
+		}
+	},
+	template : '<div class="search-view">'
+			  +'<header class="search-view-top"><div class="search-bar"><div class="search-bar-tool"><input type="text" placeholder="搜索"></div></div><div class="cancel" @click="returnPrev">取消</div></header>'
+			  +'<div class="search-content">'
+			  +'<mt-navbar v-model="selected">'
+			  +'<mt-tab-item id="1">商品</mt-tab-item>'
+			  +'<mt-tab-item id="2">商家</mt-tab-item>'
+			  +'</mt-navbar>'
+			  +'<div class="search-history">'
+			  +'<header class="search-history-header">搜索<span class="icon iconfont icon-delete clear-history"></span></header>'
+			  +'<div class="search-history-content">dsdsdfs</div>'
+			  +'</div>'
+			  +'</div>'
+			  +'</div>',
+	methods:{
+		returnPrev:function(){
+			this.$router.push({path:"/"});
+		}
+	}
 }
 /* 分类模块 */
 var fenlei = Vue.component('fenlei-view',{
@@ -223,7 +245,7 @@ var headerComponent = Vue.component('header-view',{
 	props:['title',"routerName","fixed","rightText"],
 	data(){
 		return {
-			name:"/"+(this.routerName==undefined?"":this.routerName),
+			name:{name:(this.routerName==undefined?"":this.routerName)},
 			isfixed:this.fixed==undefined?true:this.fixed,
 			rightLabel:this.rightText==undefined?"":this.rightText
 		}
@@ -324,25 +346,49 @@ var nameset ={
 		}
 	}
 }
-/* 修改密码*/
+/* 修改密码，验证手机号*/
 var pswset ={
 	data(){
 		return {
 			param:"",
 			fixed:false,
 			title:"修改密码",
-			routerName:""
+			routerName:"",
+			text:"获取验证码",
 		}
 	},
 	template :'<div class="setting-psw1 view-background"><header-view :title="title" :fixed="fixed" :routerName="routerName"></header-view>'
-			 +''
+			 +'<section class="psw-content">'
+			 +'<div class="psw-iput"><label>手机号</label><input type="number" placeholder="请输入手机号码"></div>'
+			 +'<div class="psw-iput"><label>验证码</label><input type="text" placeholder="请输入6位短信验证码"><span @click="getCode">{{text}}</span></div>'
+			 +'</section>'
+			 +'<div class="setting-psw-btn" @click="next">下一步</div>'
 			 +'</div>',
 	created:function(){
-		if(this.$route.params.prev != undefined){
+		if(this.$route.params.prev != undefined){  // 第一次进来把当前后退的路由存起来
 			localStorage.prevName = this.$route.params.prev;
 		}
 		this.param = this.$route.params.setparams==undefined?localStorage.userName:this.$route.params.setparams;
 		this.routerName = this.$route.params.prev==undefined?localStorage.prevName:this.$route.params.prev;
+	},
+	methods : {
+		next : function(){
+			this.$router.push({name:"resetpsw",params:{prev:this.$route.name}});
+		},
+		getCode : function(){
+			this.tempTime = 60;
+			this.text = "60s";
+			this.sendBtnTimer = setInterval(this.time,1000);
+		},
+		time:function(){
+			this.tempTime--;
+			if(this.tempTime < 1){
+				this.text = "发送验证码";
+				clearInterval(this.sendBtnTimer);
+				return false;
+			}
+			this.text = this.tempTime + "s";
+		}
 	}
 }
 /* 银行卡设置*/
@@ -355,5 +401,32 @@ var yhkset ={
 	template :'<div>{{param}}</div>',
 	created:function(){
 		this.param = this.$route.params.setparams;
+	}
+}
+/* 重置密码*/
+var resetpsw = {
+	data(){
+		return {
+			title:"设置密码",
+			routerName:'',
+			fixed:false
+		}
+	},
+	template :'<div class="reset-psw-view view-background"><header-view :title="title" :fixed="fixed" :routerName="routerName"></header-view>'
+			 +'<section class="reset-psw-input"><div class="psw-input"><label>新密码</label><input type="password" value="11222"></div></section>'
+			 +'<div class="input-help">英文字母或数字、限6-32字符</div>'
+			 +'<div class="setting-psw-btn" @click="touser">确定</div>'
+			 +'</div>',
+	created:function(){
+		if(this.$route.params.prev != undefined){  // 第一次进来把当前后退的路由存起来
+			localStorage.prevName = this.$route.params.prev;
+		}
+		this.routerName = this.$route.params.prev==undefined?localStorage.prevName:this.$route.params.prev;
+	},
+	methods:{
+		touser:function(){
+			this.$toast("设置密码成功！");
+			this.$router.push({name:"userSet"});
+		}
 	}
 }
