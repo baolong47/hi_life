@@ -393,6 +393,8 @@ hr{
 	font-size: .15rem;
 	line-height: .15rem;
 	text-align: center;
+	top: 50%;
+	transform: translateY(-50%);
 }
 .member-center-fufen{
 	position: absolute;
