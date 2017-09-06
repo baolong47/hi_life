@@ -143,7 +143,7 @@ var search ={
 		}
 	},
 	template : '<div class="search-view">'
-			  +'<header class="search-view-top"><div class="search-bar"><div class="search-bar-tool"><input type="text" placeholder="搜索"></div></div><div class="cancel" @click="returnPrev">取消</div></header>'
+			  +'<header class="search-view-top"><div class="search-bar"><div class="search-bar-tool"><input type="text" placeholder="搜索" @keyup.13="search"></div></div><div class="cancel" @click="returnPrev">取消</div></header>'
 			  +'<div class="search-content">'
 			  +'<mt-navbar v-model="selected">'
 			  +'<mt-tab-item id="1">商品</mt-tab-item>'
@@ -158,6 +158,9 @@ var search ={
 	methods:{
 		returnPrev:function(){
 			this.$router.push({path:"/"});
+		},
+		search: function(){
+			this.$toast("搜索成功!");
 		}
 	}
 }
