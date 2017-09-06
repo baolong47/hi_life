@@ -145,11 +145,13 @@ var search ={
 	data(){
 		return {
 			selected:"1",
-			searchContent:[]
+			searchContent:[],
+			searchContext:"",
+			searchResult:[]
 		}
 	},
 	template : '<div class="search-view">'
-			  +'<header class="search-view-top"><div class="search-bar"><div class="search-bar-tool"><input type="text" placeholder="搜索" @keyup.13="search" @blur="search"></div></div><div class="cancel" @click="returnPrev">取消</div></header>'
+			  +'<header class="search-view-top"><div class="search-bar"><div class="search-bar-tool"><input type="text" v-model="searchContext" placeholder="搜索" @keyup.13="search" @blur="search"></div></div><div class="cancel" @click="returnPrev">取消</div></header>'
 			  +'<div class="search-content">'
 			  +'<mt-navbar v-model="selected">'
 			  +'<mt-tab-item id="1">商品</mt-tab-item>'
@@ -157,7 +159,9 @@ var search ={
 			  +'</mt-navbar>'
 			  +'<div class="search-history">'
 			  +'<header class="search-history-header">搜索<span class="icon iconfont icon-delete clear-history"></span></header>'
-			  +'<div class="search-history-content"></div>'
+			  +'<div class="search-history-content">'
+			  +'<span v-for="(item,key) in searchResult">{{item}}</span>'
+			  +'</div>'
 			  +'</div>'
 			  +'</div>'
 			  +'</div>',
@@ -167,7 +171,25 @@ var search ={
 		},
 		search: function(){
 			this.$toast("搜索成功!");
+			var resultArr = [] ;
+			if(!localStorage.searchResult){
+				localStorage.setItem("searchResult",this.searchContext);
+			}else{
+				this.searchResult = localStorage.getItem("searchResult").split(",");
+				resultArr = localStorage.getItem("searchResult").split(",");
+				if(resultArr.indexOf(this.searchContext) < 0){
+					resultArr.push(this.searchContext);
+				}
+				resultArr.join("");
+				localStorage.setItem("searchResult",resultArr);
+			}
+//			this.$router.push({name:"searchResult"});
 		}
+	},
+	created:function(){
+		if(localStorage.searchResult){
+				this.searchResult = localStorage.getItem("searchResult").split(",");
+			}
 	}
 }
 /* 分类模块 */
