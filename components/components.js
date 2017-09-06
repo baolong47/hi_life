@@ -25,6 +25,11 @@ var main ={
 	},
 	methods : {
 		indexSwap:function(val){
+			if(val == "custom"){
+				if(!localStorage.userName){
+					this.$router.push({name:"login"});
+				}
+			}
 			this.$router.push(val);
 		}
 	}
@@ -139,11 +144,12 @@ var swiper = Vue.component('swiper-view',{
 var search ={
 	data(){
 		return {
-			selected:"1"
+			selected:"1",
+			searchContent:[]
 		}
 	},
 	template : '<div class="search-view">'
-			  +'<header class="search-view-top"><div class="search-bar"><div class="search-bar-tool"><input type="text" placeholder="搜索" @keyup.13="search"></div></div><div class="cancel" @click="returnPrev">取消</div></header>'
+			  +'<header class="search-view-top"><div class="search-bar"><div class="search-bar-tool"><input type="text" placeholder="搜索" @keyup.13="search" @blur="search"></div></div><div class="cancel" @click="returnPrev">取消</div></header>'
 			  +'<div class="search-content">'
 			  +'<mt-navbar v-model="selected">'
 			  +'<mt-tab-item id="1">商品</mt-tab-item>'
@@ -151,7 +157,7 @@ var search ={
 			  +'</mt-navbar>'
 			  +'<div class="search-history">'
 			  +'<header class="search-history-header">搜索<span class="icon iconfont icon-delete clear-history"></span></header>'
-			  +'<div class="search-history-content">dsdsdfs</div>'
+			  +'<div class="search-history-content"></div>'
 			  +'</div>'
 			  +'</div>'
 			  +'</div>',
@@ -293,7 +299,7 @@ var userSet = {
 			  +'<div class="setting-list-item" @click="setting(pswRouter,yhk)"><span class="setting-label">我的银行卡</span><span class="setting-more"><i class="icon iconfont icon-more"></i></span></div>'
 			  +'</div>'
 			  +'</section>'
-			  +'<footer class="login-out">退出登录</footer>'
+			  +'<footer class="login-out" @click="loginout">退出登录</footer>'
 			  +'</div>',
 	created:function(){
 		if(this.$route.params.userName){
@@ -304,6 +310,10 @@ var userSet = {
 	methods:{
 		setting : function(val,param){
 			this.$router.push({name:val,params:{setparams:param,prev:this.$route.name}});
+		},
+		loginout : function(){
+			localStorage.removeItem("userName");
+			this.$router.push({name:"login"});
 		}
 	}
 }
@@ -432,4 +442,8 @@ var resetpsw = {
 			this.$router.push({name:"userSet"});
 		}
 	}
+}
+/* 登录 */
+var loginTpl = {
+	template:'<div>登录</div>'
 }

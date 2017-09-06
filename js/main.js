@@ -14,7 +14,8 @@ var router = new VueRouter({ // 路由要挂载在vue实例上
 		{path:"/userSet/nameset",component:nameset,name:"nameset"},
 		{path:"/userSet/pswset",component:pswset,name:"pswset"},
 		{path:"/userSet/yhkset",component:yhkset,name:"yhkset"},
-		{path:"/userSet/pswset/resetpsw",component:resetpsw,name:"resetpsw"}
+		{path:"/userSet/pswset/resetpsw",component:resetpsw,name:"resetpsw"},
+		{path:"/login",component:loginTpl,name:"login"}
 	]
 });
 new Vue({
