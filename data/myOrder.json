@@ -1,0 +1,110 @@
+[
+    {
+        "state": "4",
+        "stateText": "交易成功",
+        "dpList": [
+            {
+                "storeName": "云上生活",
+                "spList": [
+                    {
+                        "img": "/",
+                        "summary": "魔都新店LIST送上，终于熬过了40度的高 温天，冰凉降温",
+                        "sales": 189.68,
+                        "count": 1
+                    }
+                ]
+            },
+            {
+                "storeName": "唯品会",
+                "spList": [
+                    {
+                        "img": "/",
+                        "summary": "魔都新店LIST送上，终于熬过了40度的高 温天，冰凉降温",
+                        "sales": 189.68,
+                        "count": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "state": "3",
+        "stateText": "已付款",
+        "dpList": [
+            {
+                "storeName": "会卖萌的茶饮店",
+                "spList": [
+                    {
+                        "img": "/",
+                        "summary": "耗资千万原版复刻了三生三世十里桃花的 场景，主营新派淮扬菜。镇店红烧肉采...",
+                        "sales": 189.68,
+                        "count": 2
+                    },
+                    {
+                        "img": "/",
+                        "summary": "夏日茶饮第一位，酸樱桃柠檬汁，一杯龙 舌兰在午后带来一丝清凉",
+                        "sales": 189.68,
+                        "count": 2
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "state": "2",
+        "stateText": "待付款",
+        "dpList": [
+            {
+                "storeName": "OAK英式咖啡",
+                "spList": [
+                    {
+                        "img": "/",
+                        "summary": "魔都新店LIST送上，终于熬过了40度的高 温天，冰凉降温",
+                        "sales": 189.68,
+                        "count": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "state": "1",
+        "stateText": "退款中",
+        "dpList": [
+            {
+                "storeName": "云上生活",
+                "spList": [
+                    {
+                        "img": "/",
+                        "summary": "魔都新店LIST送上，终于熬过了40度的高 温天，冰凉降温",
+                        "sales": 189.68,
+                        "count": 1
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "state": "0",
+        "stateText": "已退款",
+        "dpList": [
+            {
+                "storeName": "云上生活",
+                "spList": [
+                    {
+                        "img": "/",
+                        "summary": "魔都新店LIST送上，终于熬过了40度的高 温天，冰凉降温",
+                        "sales": 189.68,
+                        "count": 1
+                    },
+                    {
+                        "img": "/",
+                        "summary": "魔都新店LIST送上，终于熬过了40度的高 温天，冰凉降温",
+                        "sales": 189.68,
+                        "count": 3
+                    }
+                ]
+            }
+        ]
+    }
+]

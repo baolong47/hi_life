@@ -91,11 +91,11 @@ var custom = {
 	data(){
 		return {
 			memberList:[
-			{id:"1",label:"我的收藏",url:"",icon:"./image/memberCenter/mine_list_collect@3x.png"},
-			{id:"2",label:"我的订单",url:"",icon:"./image/memberCenter/mine_list_order@3x.png"},
-			{id:"3",label:"我的推荐",url:"",icon:"./image/memberCenter/mine_list_recommend@3x.png"},
-			{id:"4",label:"兑换商城",url:"",icon:"./image/memberCenter/mine_list_exchange@3x.png"},
-			{id:"5",label:"我的收益",url:"",icon:"./image/memberCenter/mine_list_profit@3x.png"}],
+			{id:"1",label:"我的收藏",url:"",icon:"./image/memberCenter/mine_list_collect@3x.png",name:"myCollection"},
+			{id:"2",label:"我的订单",url:"",icon:"./image/memberCenter/mine_list_order@3x.png",name:"myOrder"},
+			{id:"3",label:"我的推荐",url:"",icon:"./image/memberCenter/mine_list_recommend@3x.png",name:"myCollection"},
+			{id:"4",label:"兑换商城",url:"",icon:"./image/memberCenter/mine_list_exchange@3x.png",name:"myCollection"},
+			{id:"5",label:"我的收益",url:"",icon:"./image/memberCenter/mine_list_profit@3x.png",name:"myCollection"}],
 			userName:"圆滚滚的奶黄包纸"
 		}
 	},
@@ -107,12 +107,15 @@ var custom = {
 			  +'<div class="fufen-item"><img src="./image/memberCenter/mine_medi_coin@3x.png"><span>可用福分</span><span>199.99</span></div>'
 			  +'</div></section>'
 			  +'<section class="member-center-list">'
-			  +'<div class="member-center-list-item" v-for="(item,key) in memberList"><img :src="item.icon"><span class="list-title">{{item.label}}</span><span class="icon iconfont icon-more more"></span></div>'
+			  +'<div class="member-center-list-item" v-for="(item,key) in memberList" @click="toPage(item.name)"><img :src="item.icon"><span class="list-title">{{item.label}}</span><span class="icon iconfont icon-more more"></span></div>'
 			  +'</section>'
 			  +'</div>',
 	methods:{
 		toSetting : function(){
 			this.$router.push({name:'userSet',params:{userName:this.userName}});
+		},
+		toPage : function(val){
+			this.$router.push({name:val,params:{name:this.$route.name}});
 		}
 	}
 }
@@ -469,3 +472,175 @@ var resetpsw = {
 var loginTpl = {
 	template:'<div>登录</div>'
 }
+/* 我的收藏页面 */
+var myCollectionTpl = {
+	data (){
+		return {
+			title:"我的收藏",
+			fixed:false,
+			routerName:'',
+			rightText:"编辑",
+			isBind:true,
+			atcive:'goods',
+			list:[],
+			edit:false,
+			selectArr :[],
+			ischeckAll:false
+		}
+	},
+	template :'<section class="my-collention"><header-view :title="title" :fixed="fixed" :routerName="routerName" :rightText="rightText" @rightClick="parentEvent"></header-view>'
+			 +'<div class="my-tab">'
+			 +'<div :class="{mySelected:isBind}" @click="swap(isBind)"><label>商品</label></div>'
+			 +'<div :class="{mySelected:!isBind}" @click="swap(!isBind)"><label>商家</label></div>'
+			 +'</div>'
+			 +'<mt-tab-container v-model="atcive">'
+			 +'<mt-tab-container-item id="goods">'
+			 +'<div class="hi-life-list-item" v-for="(item,key) in list">'
+			 +'<div v-if="edit" class="hi-life-list-checkbox"><i :class="formatActive" @click="check(item.goodId)"></i></div>'
+			 +'<div class="hi-life-list-item-img"><img :src="item.img"></div>'
+			 +'<div class="hi-life-list-item-content">'
+			 +'<h3>{{item.name}}</h3>'
+			 +'<div class="hi-life-list-item-summary">{{item.summary}}</div>'
+			 +'<div class="hi-life-list-item-other">¥<span class="int-string">{{item.sales|formatInt}}</span>{{item.sales|formatDecimal}}<div class="hi-life-list-item-oper" v-if="!edit"></div></div>'
+			 +'</div>'
+			 +'</div>'
+			 +'</mt-tab-container-item>'
+			 +'<mt-tab-container-item id="store">商家'
+			 +'</mt-tab-container-item>'
+			 +'</mt-tab-container>'
+			 +'<div class="my-collection-bottom" v-if="edit">'
+			 +'<div class="hi-life-list-checkboxall"><i :class="ischeckAll" @click="checkAll()"></i></div>'
+			 +'<span>全选</span>'
+			 +'<div class="dele-btn" @click="dele">删除</div>'
+			 +'</div>'
+			 +'</section>',
+	created : function(){
+		var _this = this;
+		this.routerName = this.$route.params.name;  // 上个路由带过来
+		axios.get("./data/myCollection.json")
+		.then(function(response){
+			_this.list = response.data;
+		})
+		.catch(function(){
+			_this.$toast("加载信息失败!");
+		});
+	},
+	filters:{
+		formatInt:function(val){
+			return val.toString().substr(0,val.toString().indexOf("."));
+		},
+		formatDecimal:function(val){
+			return val.toString().substr(val.toString().indexOf("."));
+		}
+	},
+	methods:{
+		parentEvent:function(){
+			this.edit = true;
+		},
+		swap:function(val){
+			if(this.isBind == val){
+				this.isBind = !val;
+			}else{
+				this.isBind = val;
+			}
+		},
+		check : function(val){
+			console.log(val);
+		},
+		dele : function(){
+			this.edit = false;
+		}
+	},
+	watch:{
+		isBind:function(newValue,oldValue){
+			if(newValue){
+				this.atcive = "goods";
+			}else{
+				this.atcive = "store";
+			}
+		}
+	},
+	computed:{
+		formatActive :function(val){
+			/*if(val.indexOf(this.selectArr)){
+				return "icon iconfont icon-selected";
+			}else{
+				return "";
+			}*/
+		}
+	}
+}
+/* 我的订单页面 */
+var myOrderTpl = {
+	data(){
+		return {
+			title:"我的订单",
+			fixed:false,
+			routerName:"",
+			order:[],
+			tabAction:"myOrderTab.json",
+			style:{
+				height:""
+			}
+		}
+	},
+	template:'<div class="my-order-view "><header-view :title="title" :fixed="fixed" :routerName="routerName" ></header-view>'
+			+'<tab-view :action="tabAction"></tab-view>'
+			+'<div class="my-order-content" :style="style">'
+			+'<section class="my-order-list" v-for="(item,key) in order">'
+			+'<div class="order-dp" v-for="(item1,key1) in item.dpList">'
+			//+'{{item1}}'
+			+'<header class="my-order-list-storeName"><i></i>{{item1.storeName}}<span class="order-state">{{item.stateText}}</span></header>'
+			+'<div v-for="(item2,key2) in item1.spList">'
+			+'<div class="hi-life-list-item">'
+			+'<div class="hi-life-list-item-img"><img :src="item2.img"></div>'
+			+'<div class="hi-life-list-item-content">'
+			+'<div class="hi-life-list-item-summary">{{item2.summary}}</div>'
+			+'</div>'
+			+'</div>'
+			+'</div>'
+			+'</div></section>'
+			+'</div>'
+			+'</div>',
+	created:function(){
+		this.style.height = document.body.clientHeight  - 90 + "px";  //计算menu的高度
+	},
+	mounted:function(){
+		var _this = this;
+		axios.get('./data/myOrder.json')
+		.then(function(response){
+			_this.order = response.data;
+		})
+		.catch(function(){
+			_this.$toast("加载失败!");
+		});
+	}
+}
+/* 自定义tab组件 */
+var tab = Vue.component('tab-view',{
+	props:['action'],
+	data(){
+		return {
+			list:[],
+			activeId:'1'
+		}
+	},
+	template:'<section class="my-tab">'
+			+'<div v-for="(item,key) in list"  :class="{mySelected:item.id==activeId}" @click="swapTab(item.id)"><label>{{item.label}}</label></div>'
+			+'</section>',
+	mounted:function(){
+		var _this =this;
+		axios.get('./data/'+this.action)
+		.then(function(response){
+			_this.list = response.data;
+		})
+		.catch(function(){
+			_this.$toast("加载失败!");
+		});
+	},
+	methods:{
+		swapTab : function(val){
+			this.activeId = val;
+		}
+	}
+});

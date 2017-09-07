@@ -665,3 +665,195 @@ hr{
 	color: #333;
 	background-color: #F5F5F5;
 }
+/* 公用的自定义tab样式*/
+.my-tab{
+	display: flex;
+	height: .5rem;
+	line-height: .5rem;
+	padding: .03rem 0;
+	color: #333333;
+	text-align: center;
+	background-color: #FFFFFF;
+	border-bottom: .01rem solid #E5E5E5;
+}
+.my-tab div.mySelected{
+	color: rgb(255,161,38);
+}
+.my-tab div{
+	flex: 1;
+}
+.my-tab div label{
+	height: 100%;
+	display: inline-block;
+}
+.my-tab div.mySelected label{
+	border-bottom: .03rem solid;
+	border-bottom-color:-webkit-linear-gradient(left , rgb(255,161,38), rgb(255,139,32));
+	border-bottom-color: linear-gradient(to right, rgb(255,161,38), rgb(255,139,32));
+}
+/* 公用列表样式 */
+.hi-life-list-item{
+	height: 1.2rem;
+    padding-left: .15rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+.hi-life-list-checkbox{
+	flex-shrink: 0;
+	width: .28rem;
+	position: relative;
+	border-bottom:.01rem solid lightgray;
+}
+.hi-life-list-checkbox i{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-70%,-50%);
+	text-align: center;
+	font-size: .2rem;
+	width: .2rem;
+	height: .2rem;
+	border-radius: 50%;
+	border: .01rem solid lightgray;
+}
+.hi-life-list-checkbox i.icon-selected{
+	color: #FFFFFF;
+	background-color:rgb(255,161,38) ;
+}
+.hi-life-list-item-img{
+    flex-shrink: 0;
+    width: .9rem;
+    padding: .15rem 0;
+    border-bottom: .01rem solid lightgray;
+}
+.hi-life-list-item-content{
+	flex: auto;
+    padding: .15rem .1rem;
+    border-bottom: .01rem solid lightgray;
+}
+.hi-life-list-item-content h3{
+	height: .24rem;
+	color: #333;
+}
+.hi-life-list-item-summary{
+	width: 100%;
+    font-size: .12rem;
+    margin: .03rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.hi-life-list-item-other{
+	color: rgb(255,161,38);
+	font-size: .12rem;
+	position: relative;
+}
+.hi-life-list-item-oper{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: .22rem;
+	height: .22rem;
+	font-size: .16rem;
+	right: 0.04rem;
+	background: url(../image/store_list_add_cart@3x.png);
+	background-size: 100% 100%;
+	
+}
+.hi-life-list-item-other .int-string{
+	font-size: .16rem;
+}
+
+/* 我的收藏页面*/
+.my-collention{
+	height: 100%;
+}
+.my-collection-bottom{
+	position: fixed;
+	height: .45rem;
+	line-height: .45rem;
+	bottom: 0;
+	width: 100%;
+	z-index: 1;
+	border-top: .01rem solid rgba(141,138,142,.2);
+}
+.hi-life-list-checkboxall{
+	display: inline-block;
+	width: .43rem;
+	height: 100%;
+	position: relative;
+}
+.hi-life-list-checkboxall i{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    line-height: normal;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    font-size: .2rem;
+    width: .2rem;
+    height: .2rem;
+    border-radius: 50%;
+    border: .01rem solid lightgray;
+}
+.my-collection-bottom span{
+	vertical-align: top;
+	color: #333;
+}
+.dele-btn{
+	height: 100%;
+	float: right;
+	width: 1.05rem;
+	color: #FFFFFF;
+	text-align: center;
+	background:-webkit-linear-gradient(right ,top, rgb(223,10,23), rgb(255,139,32));
+	background:linear-gradient(to left top, rgb(223,10,23), rgb(255,139,32));
+}
+/* 我的订单页面*/
+.my-order-view{
+	height: 100%;
+	background-color: #F5F5F5;
+}
+.my-order-list{
+	padding-left:.15rem;
+}
+.my-order-list-storeName{
+	height: .45rem;
+	color: #333;
+	padding-right: .15rem;
+	line-height: .45rem;
+	border-bottom: .01rem solid #E5E5E5;
+}
+.my-order-list-storeName i{
+	width: .15rem;
+	height: .15rem;
+	margin-right: .05rem;
+	display: inline-block;
+	vertical-align: sub;
+	background: url(../image/shopping_cart_store@3x.png);
+	background-size: 100% 100%;
+}
+.order-state{
+	float: right;
+	color: rgb(255,161,38);
+}
+.order-dp{
+	
+}
+.my-order-list{
+	margin-bottom: .05rem;
+	background-color: #FFFFFF;
+}
+.my-order-list:last-child{
+	margin-bottom: 1rem;
+}
+.my-order-content{
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+.my-order-content .hi-life-list-item{
+	padding: 0;
+}
