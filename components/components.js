@@ -582,7 +582,7 @@ var myOrderTpl = {
 			style:{
 				height:""
 			},
-			active:"tab-container1"
+			active:"5"
 		}
 	},
 	template:'<div class="my-order-view "><header-view :title="title" :fixed="fixed" :routerName="routerName" ></header-view>'
@@ -591,8 +591,26 @@ var myOrderTpl = {
 			+'</div>'
 			+'<div class="my-order-content" :style="style">'
 			+'<mt-tab-container v-model="active">'
-			+'<mt-tab-container-item id="tab-container1">'
+			/* 全部 */
+			+'<mt-tab-container-item id="5">'
 			+'<section class="my-order-list" v-for="(item,key) in order">'
+			+'<div class="order-dp" v-for="(item1,key1) in item.dpList">'
+			+'<header class="my-order-list-storeName"><i></i>{{item1.storeName}}<span class="order-state">{{item.stateText}}</span></header>'
+			+'<div class="sp-contanier" v-for="(item2,key2) in item1.spList">'
+			+'<div class="hi-life-list-item">'
+			+'<div class="hi-life-list-item-img"><img :src="item2.img"></div>'
+			+'<div class="hi-life-list-item-content">'
+			+'<div class="hi-life-list-item-summary">{{item2.summary}}</div>'
+			+'<div class="hilife-list-detail"><span class="sp-sales">{{item2.sales|formarMoney}}</span><span class="sp-count">x{{item2.count}}</span></div>'
+			+'</div>'
+			+'</div>'
+			+'</div>'
+			+'<div class="sp-count-detail">共一件商品，合计198.65</div>'
+			+'</div></section>'
+			+'</mt-tab-container-item>'
+			/* 分情况，代付款，已付款....*/
+			+'<mt-tab-container-item :id="item.state" v-for="(item,key) in order">'
+			+'<section class="my-order-list">'
 			+'<div class="order-dp" v-for="(item1,key1) in item.dpList">'
 			+'<header class="my-order-list-storeName"><i></i>{{item1.storeName}}<span class="order-state">{{item.stateText}}</span></header>'
 			+'<div class="sp-contanier" v-for="(item2,key2) in item1.spList">'
