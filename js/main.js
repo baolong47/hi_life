@@ -19,7 +19,9 @@ var router = new VueRouter({ // 路由要挂载在vue实例上
 		{path:"/userSet/pswset/resetpsw",component:resetpsw,name:"resetpsw"},
 		{path:"/login",component:loginTpl,name:"login"},
 		{path:"/myCollection",component:myCollectionTpl,name:"myCollection"},
-		{path:"/myOrder",component:myOrderTpl,name:"myOrder"}
+		{path:"/myOrder",component:myOrderTpl,name:"myOrder"},
+		{path:"/myRecommend",component:myRecommendTpl,name:"myRecommend"},
+		{path:"/recommendCode",component:recommendCodeTpl,name:"recommendCode"}
 	]
 });
 new Vue({

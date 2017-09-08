@@ -93,7 +93,7 @@ var custom = {
 			memberList:[
 			{id:"1",label:"我的收藏",url:"",icon:"./image/memberCenter/mine_list_collect@3x.png",name:"myCollection"},
 			{id:"2",label:"我的订单",url:"",icon:"./image/memberCenter/mine_list_order@3x.png",name:"myOrder"},
-			{id:"3",label:"我的推荐",url:"",icon:"./image/memberCenter/mine_list_recommend@3x.png",name:"myCollection"},
+			{id:"3",label:"我的推荐",url:"",icon:"./image/memberCenter/mine_list_recommend@3x.png",name:"myRecommend"},
 			{id:"4",label:"兑换商城",url:"",icon:"./image/memberCenter/mine_list_exchange@3x.png",name:"myCollection"},
 			{id:"5",label:"我的收益",url:"",icon:"./image/memberCenter/mine_list_profit@3x.png",name:"myCollection"}],
 			userName:"圆滚滚的奶黄包纸"
@@ -605,7 +605,7 @@ var myOrderTpl = {
 			+'</div>'
 			+'</div>'
 			+'</div>'
-			+'<div class="sp-count-detail">共一件商品，合计198.65</div>'
+			+'<div class="sp-count-detail">共{{item1|size}}件商品，合计{{item1|count}}</div>'
 			+'</div></section>'
 			+'</mt-tab-container-item>'
 			/* 分情况，代付款，已付款....*/
@@ -622,7 +622,7 @@ var myOrderTpl = {
 			+'</div>'
 			+'</div>'
 			+'</div>'
-			+'<div class="sp-count-detail">共一件商品，合计198.65</div>'
+			+'<div class="sp-count-detail">共{{item1|size}}件商品，合计{{item1|count}}</div>'
 			+'</div></section>'
 			+'</mt-tab-container-item>'
 			+'</mt-tab-container>'
@@ -652,6 +652,20 @@ var myOrderTpl = {
 	filters:{
 		formarMoney:function(val){
 			return '¥' + parseFloat(val).toFixed(2);
+		},
+		count:function(val){
+			var count=0;
+			for(var item in val.spList){
+				count += val.spList[item].count*val.spList[item].sales;
+			}
+			return count;
+		},
+		size:function(val){
+			var count=0;
+			for(var item in val.spList){
+				count += val.spList[item].count;
+			}
+			return count;
 		}
 	},
 	methods:{
@@ -685,3 +699,55 @@ var tab = Vue.component('tab-view',{
 		}
 	}
 });
+/* 我的推荐页面*/
+var myRecommendTpl ={
+	data(){
+		return {
+			title:"我的推荐",
+			fixed:false,
+			routerName:"",
+			codeIcon:"./image/recommend/recommend_icon_invit@3x.png",
+			recommedIcon:"./image/recommend/recommend_icon_recom@3x.png",
+			shouyiIcon:"./image/recommend/recommend_icon_profit@3x.png",
+			recommedList:[{name:"少司命",recommendDate:"2017.07.18"},{name:"罗荣盛",recommendDate:"2017.09.18"},{name:"测试用户",recommendDate:"2032.09.18"}]
+		}
+	},
+	template:'<div><header-view :title="title" :fixed="fixed" :routerName="routerName" ></header-view>'
+			+'<section class="recommend-summay">'
+			+'<div class="recommend-summay-item"><span class="recommend-icon"><img :src="codeIcon"></span><span>我的邀请码</span><span class="recommend-num recommend-code" @click="recommednCode">1234z</span></div>'
+			+'<div class="recommend-summay-item"><span class="recommend-icon"><img :src="recommedIcon"></span><span>我的推荐</span><span class="recommend-num">100</span></div>'
+			+'<div class="recommend-summay-item"><span class="recommend-icon"><img :src="shouyiIcon"></span><span>昨日收益</span><span class="recommend-num">30000.00元</span></div>'
+			+'</section>'
+			+'<section class="recommend-list">'
+			+'<header class="recommend-list-header">推荐列表</header>'
+			+'<div class="recommend-list-content">'
+			+'<div class="recommend-list-item" v-for="(item,key) in recommedList"><span class="recommend-name">{{item.name}}</span><span class="recommend-date">{{item.recommendDate}}</span></div>'
+			+'</div>'
+			+'</section>'
+			+'</div>',
+	methods:{
+		recommednCode:function(){
+			this.$router.push({name:"recommendCode"});
+		}
+	}
+}
+/* 我的推荐码页面 */
+var recommendCodeTpl ={
+	data(){
+		return{
+			title:"我的二维码",
+			fixed:false,
+			routerName:"",
+			img:"./image/code.png"
+		}
+	},
+	template:'<section><header-view :title="title" :fixed="fixed" :routerName="routerName" ></header-view>'
+			+'<div class="code-contanier">'
+			+'<div class="code-bg">'
+			+'<div class="code-content">'
+			+'<div class="code-img"><div class="mycode"><div class="mycode-img"><img :src="img"></div></div><div class="code-help">长按保存到本地</div></div>'
+			+'<div class="code-bottom">扫码加入我们吧</div>'
+			+'</div>'
+			+'</div></div>'
+			+'</section>'
+}
