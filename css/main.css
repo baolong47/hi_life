@@ -729,6 +729,7 @@ hr{
 }
 .hi-life-list-item-content{
 	flex: auto;
+	position: relative;
     padding: .15rem .1rem;
     border-bottom: .01rem solid lightgray;
 }
@@ -841,10 +842,23 @@ hr{
 	color: rgb(255,161,38);
 }
 .order-dp{
-	
+	position: relative;
+	margin-bottom: .05rem;
+	background-color: #FFFFFF;
+}
+.my-order-list .order-dp:after{
+	content: '';
+	position: absolute;
+	height: .05rem;
+	bottom: 0;
+	right: 0;
+	left: -.15rem;
+	background-color: #F5F5F5;
+}
+.my-order-list .order-dp:last-child:after{
+	background-color: #FFFFFF;
 }
 .my-order-list{
-	margin-bottom: .05rem;
 	background-color: #FFFFFF;
 }
 .my-order-list:last-child{
@@ -856,4 +870,40 @@ hr{
 }
 .my-order-content .hi-life-list-item{
 	padding: 0;
+}
+.sp-count-detail{
+	height: .45rem;
+	padding-right: .15rem;
+	line-height: .45rem;
+	text-align: right;
+}
+.hilife-list-detail{
+	position: absolute;
+	left: .15rem;
+	right: .15rem;
+	bottom: .16rem;
+}
+.hilife-list-detail span.sp-count{
+	float: right;
+}
+.order-dp .hi-life-list-item-summary,.order-dp .sp-sales,.sp-count-detail{
+	color: #333;
+}
+.scorll-tab{
+	
+}
+.scorll-tab{
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+}
+.scorll-tab .my-tab{
+	display: block;
+	white-space: nowrap;
+}
+.scorll-tab .my-tab div{
+	display: inline-block;
+	padding: 0 .215rem;
+    height: 100%;
 }

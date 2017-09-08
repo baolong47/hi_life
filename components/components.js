@@ -578,28 +578,36 @@ var myOrderTpl = {
 			fixed:false,
 			routerName:"",
 			order:[],
-			tabAction:"myOrderTab.json",
+			tabAction:[],
 			style:{
 				height:""
-			}
+			},
+			active:"tab-container1"
 		}
 	},
 	template:'<div class="my-order-view "><header-view :title="title" :fixed="fixed" :routerName="routerName" ></header-view>'
-			+'<tab-view :action="tabAction"></tab-view>'
+			+'<div class="scorll-tab">'
+			+'<tab-view :action="tabAction" @changeTab="changeTab"></tab-view>'
+			+'</div>'
 			+'<div class="my-order-content" :style="style">'
+			+'<mt-tab-container v-model="active">'
+			+'<mt-tab-container-item id="tab-container1">'
 			+'<section class="my-order-list" v-for="(item,key) in order">'
 			+'<div class="order-dp" v-for="(item1,key1) in item.dpList">'
-			//+'{{item1}}'
 			+'<header class="my-order-list-storeName"><i></i>{{item1.storeName}}<span class="order-state">{{item.stateText}}</span></header>'
-			+'<div v-for="(item2,key2) in item1.spList">'
+			+'<div class="sp-contanier" v-for="(item2,key2) in item1.spList">'
 			+'<div class="hi-life-list-item">'
 			+'<div class="hi-life-list-item-img"><img :src="item2.img"></div>'
 			+'<div class="hi-life-list-item-content">'
 			+'<div class="hi-life-list-item-summary">{{item2.summary}}</div>'
+			+'<div class="hilife-list-detail"><span class="sp-sales">{{item2.sales|formarMoney}}</span><span class="sp-count">x{{item2.count}}</span></div>'
 			+'</div>'
 			+'</div>'
 			+'</div>'
+			+'<div class="sp-count-detail">共一件商品，合计198.65</div>'
 			+'</div></section>'
+			+'</mt-tab-container-item>'
+			+'</mt-tab-container>'
 			+'</div>'
 			+'</div>',
 	created:function(){
@@ -607,13 +615,31 @@ var myOrderTpl = {
 	},
 	mounted:function(){
 		var _this = this;
-		axios.get('./data/myOrder.json')
+		axios.get(serverUrl+'/myOrder.json')
 		.then(function(response){
 			_this.order = response.data;
 		})
 		.catch(function(){
 			_this.$toast("加载失败!");
 		});
+		var _this =this;
+		axios.get('./data/myOrderTab.json')
+		.then(function(response){
+			_this.tabAction = response.data;
+		})
+		.catch(function(){
+			_this.$toast("加载失败!");
+		});
+	},
+	filters:{
+		formarMoney:function(val){
+			return '¥' + parseFloat(val).toFixed(2);
+		}
+	},
+	methods:{
+		changeTab:function(val){
+			this.active = val;
+		}
 	}
 }
 /* 自定义tab组件 */
@@ -621,26 +647,23 @@ var tab = Vue.component('tab-view',{
 	props:['action'],
 	data(){
 		return {
-			list:[],
-			activeId:'1'
+			activeId:'5'
 		}
 	},
 	template:'<section class="my-tab">'
 			+'<div v-for="(item,key) in list"  :class="{mySelected:item.id==activeId}" @click="swapTab(item.id)"><label>{{item.label}}</label></div>'
 			+'</section>',
 	mounted:function(){
-		var _this =this;
-		axios.get('./data/'+this.action)
-		.then(function(response){
-			_this.list = response.data;
-		})
-		.catch(function(){
-			_this.$toast("加载失败!");
-		});
 	},
 	methods:{
 		swapTab : function(val){
 			this.activeId = val;
+			this.$emit("changeTab",val);
+		}
+	},
+	computed:{
+		list:function(){
+			return this.action;
 		}
 	}
 });
