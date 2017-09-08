@@ -893,6 +893,8 @@ hr{
 	
 }
 .scorll-tab{
+	border-bottom: .01rem solid #E5E5E5;
+    background: white;
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -900,6 +902,7 @@ hr{
 }
 .scorll-tab .my-tab{
 	display: block;
+	border-bottom: none;
 	white-space: nowrap;
 }
 .scorll-tab .my-tab div{
