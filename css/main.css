@@ -974,6 +974,9 @@ hr{
 	border-bottom:none;
 }
 /* 二维码页面 */
+.code-view{
+	height: 100%;
+}
 .code-contanier{
 	width: 100%;
 	height: 4.51rem;

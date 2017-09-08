@@ -741,7 +741,7 @@ var recommendCodeTpl ={
 			img:"./image/code.png"
 		}
 	},
-	template:'<section><header-view :title="title" :fixed="fixed" :routerName="routerName" ></header-view>'
+	template:'<section class="code-view view-background"><header-view :title="title" :fixed="fixed" :routerName="routerName" ></header-view>'
 			+'<div class="code-contanier">'
 			+'<div class="code-bg">'
 			+'<div class="code-content">'
