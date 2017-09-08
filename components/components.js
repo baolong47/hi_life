@@ -597,7 +597,7 @@ var myOrderTpl = {
 			+'<div class="order-dp" v-for="(item1,key1) in item.dpList">'
 			+'<header class="my-order-list-storeName"><i></i>{{item1.storeName}}<span class="order-state">{{item.stateText}}</span></header>'
 			+'<div class="sp-contanier" v-for="(item2,key2) in item1.spList">'
-			+'<div class="hi-life-list-item">'
+			+'<div class="hi-life-list-item" @click="viewSp(item2.id,item.state)">'
 			+'<div class="hi-life-list-item-img"><img :src="item2.img"></div>'
 			+'<div class="hi-life-list-item-content">'
 			+'<div class="hi-life-list-item-summary">{{item2.summary}}</div>'
@@ -614,7 +614,7 @@ var myOrderTpl = {
 			+'<div class="order-dp" v-for="(item1,key1) in item.dpList">'
 			+'<header class="my-order-list-storeName"><i></i>{{item1.storeName}}<span class="order-state">{{item.stateText}}</span></header>'
 			+'<div class="sp-contanier" v-for="(item2,key2) in item1.spList">'
-			+'<div class="hi-life-list-item">'
+			+'<div class="hi-life-list-item" @click="viewSp(item2.id,item.state)">'
 			+'<div class="hi-life-list-item-img"><img :src="item2.img"></div>'
 			+'<div class="hi-life-list-item-content">'
 			+'<div class="hi-life-list-item-summary">{{item2.summary}}</div>'
@@ -671,6 +671,9 @@ var myOrderTpl = {
 	methods:{
 		changeTab:function(val){
 			this.active = val;
+		},
+		viewSp:function(val,state){
+			this.$router.push({path:"/myOrder/"+state,params:{spId:val}})
 		}
 	}
 }
@@ -750,4 +753,12 @@ var recommendCodeTpl ={
 			+'</div>'
 			+'</div></div>'
 			+'</section>'
+}
+var orderDetailTpl = {
+	data(){
+		return {
+			
+		}
+	},
+	template:'<div>订单详情</div>'
 }
