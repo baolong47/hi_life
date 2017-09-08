@@ -415,7 +415,7 @@ var pswset ={
 		},
 		getCode : function(){
 			this.tempTime = 60;
-			this.text = "60s";
+			this.text = "60秒后重发";
 			this.sendBtnTimer = setInterval(this.time,1000);
 		},
 		time:function(){
@@ -425,7 +425,7 @@ var pswset ={
 				clearInterval(this.sendBtnTimer);
 				return false;
 			}
-			this.text = this.tempTime + "s";
+			this.text = this.tempTime + "秒后重发";
 		}
 	}
 }
@@ -673,6 +673,7 @@ var myOrderTpl = {
 			this.active = val;
 		},
 		viewSp:function(val,state){
+			debugger;
 			this.$router.push({path:"/myOrder/"+state,params:{spId:val}})
 		}
 	}
@@ -757,8 +758,33 @@ var recommendCodeTpl ={
 var orderDetailTpl = {
 	data(){
 		return {
-			
+			title:"订单详情",
+			fixed:false,
+			routerName:""
 		}
 	},
-	template:'<div>订单详情</div>'
+	template:'<div class="order-detail-view"><header-view :title="title" :fixed="fixed" :routerName="routerName" ></header-view>'
+			+'<section class="order-detail-bg"><span class="order-detail-state">交易完成</span></section>'
+			+'<section class="order-detail-mes">'
+			+'<div class="order-detail-address"><label>提货地址</label><span>商家地址<i></i></span></div>'
+			+'<div class="order-detail-datetme"><label>提货时间</label><span>2017-08-24 14：00</span></div>'
+			+'</section>'
+			+'<section class="order-dp">'
+			+'<header class="my-order-list-storeName"><i></i>唯品会<span class="order-state">交易成功</span></header>'
+			+'<div class="sp-contanier">'
+			+'<div class="hi-life-list-item">'
+			+'<div class="hi-life-list-item-img"><img src="/"></div>'
+			+'<div class="hi-life-list-item-content">'
+			+'<div class="hi-life-list-item-summary">魔都新店LIST送上，终于熬过了40度的高 温天，冰凉降温</div>'
+			+'<div class="hilife-list-detail"><span class="sp-sales">¥189.68</span><span class="sp-count">x1</span></div>'
+			+'</div>'
+			+'</div>'
+			+'</div>'
+			+'</section>'
+			+'<section class="order-detail-summary">'
+			+'<div>商品金额</div>'
+			+'<div>抵扣福分</div>'
+			+'<div>付款方式</div>'
+			+'</section>'
+			+'</div>'
 }

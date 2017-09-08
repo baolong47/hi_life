@@ -580,13 +580,12 @@ hr{
 	height: 100%;
 }
 .psw-iput span{
-	width: .72rem;
+	font-size: .12rem;
+	width: .98rem;
 	right: .18rem;
 	position: absolute;
-	height: .24rem;
-	line-height: normal;
-	padding: .04rem .12rem;
-	vertical-align: middle;
+	height: .34rem;
+	line-height: .34rem;
 	color: rgb(255,161,38);
 	text-align: center;
 	border-radius: .3rem;
@@ -717,7 +716,7 @@ hr{
 	border-radius: 50%;
 	border: .01rem solid lightgray;
 }
-.hi-life-list-checkbox i.icon-selected{
+.hi-life-list-checkbox i.icon-selected{/*icon iconfont icont-selected*/
 	color: #FFFFFF;
 	background-color:rgb(255,161,38) ;
 }
@@ -1022,4 +1021,62 @@ hr{
 	transform: translateX(-50%);
 	height: 2.5rem;
 	width: 2.5rem;
+}
+/* 订单详情 */
+.order-detail-bg{
+	height: 1rem;
+	line-height: 1rem;
+	background: url(../image/orderDetail/finish_bg@3x.png);
+	background-size: 100% 100%;
+}
+.order-detail-state{
+	margin-left: 20%;
+	color: #333;
+}
+.order-detail-mes{
+	padding-left: .15rem;
+	border-bottom: .05rem solid #f5f5f5;
+}
+.order-detail-mes div{
+	height: .45rem;
+	clear: both;
+	padding-right: .15rem;
+	line-height: .45rem;
+	border-bottom: .01rem solid #E5E5E5;
+}
+.order-detail-mes div:last-child{
+	border-bottom:none;
+}
+.order-detail-mes div label{
+	color: #333;
+}
+.order-detail-mes div span{
+	float: right;
+}
+.order-detail-mes div span>i{
+	display: inline-block;
+	margin-left: .05rem;
+	width: .14rem;
+	height: .16rem;
+	vertical-align: middle;
+	background: url(../image/select_city_now_location@3x.png);
+	background-size: 100% 100%;
+}
+.order-detail-view .my-order-list-storeName{
+	padding-left: .15rem;
+}
+.order-detail-summary{
+	height: .885rem;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	padding-left: .15rem;
+	flex-direction: column;
+	align-items: center;
+}
+.order-detail-summary div{
+	flex: 1;
+	width: 100%;
+	flex-shrink: 0;
+	vertical-align: middle;
 }
