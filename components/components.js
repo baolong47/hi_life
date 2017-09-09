@@ -1,5 +1,5 @@
 /* 项目启动主页路由*/
-var main ={
+var mainTpl ={
 	data(){
 		return {
 			selected:'index',
@@ -35,7 +35,7 @@ var main ={
 	}
 }
 /* 首页模块 */
-var index = {
+var indexTpl = {
 	data(){
 		return {
 			swiper1:'./data/swiper1.json',
@@ -83,11 +83,11 @@ var index = {
 	}
 }
 /* 购物车 页面*/
-var shopCar = {
+var shopCarTpl = {
 	template : '<div>购物车</div>'
 }
 /* 会员中心页面 */
-var custom = {
+var customTpl = {
 	data(){
 		return {
 			memberList:[
@@ -120,7 +120,7 @@ var custom = {
 	}
 }
 /* 轮播图 */
-var swiper = Vue.component('swiper-view',{
+var swiperTpl = Vue.component('swiper-view',{
 	props :['swiperUrl'],
 	data(){
 		return {
@@ -144,7 +144,7 @@ var swiper = Vue.component('swiper-view',{
 	}
 })
 /* 搜索页面 */
-var search ={
+var searchTpl ={
 	data(){
 		return {
 			selected:"1",
@@ -196,13 +196,13 @@ var search ={
 	}
 }
 /* 分类模块 */
-var fenlei = Vue.component('fenlei-view',{
+var fenleiTpl = Vue.component('fenlei-view',{
 	data(){
 		return {
 			fenleiJson :null	
 		}
 	},
-	template : '<div class="fenlei"><div class="fenlei-item" v-for="(item,key) in fenleiJson" @click="fenleiDetail"><img :src="item.icon"><p>{{item.label}}</p></div></div>',
+	template : '<div class="fenlei"><div class="fenlei-item" v-for="(item,key) in fenleiJson" @click="fenleiDetail(item.id)"><img :src="item.icon"><p>{{item.label}}</p></div></div>',
 	created : function(){
 		var _this = this;
 		axios.get('./data/fenleiJson.json')
@@ -214,13 +214,13 @@ var fenlei = Vue.component('fenlei-view',{
 		});
 	},
 	methods : {
-		fenleiDetail : function(){
-			this.$toast("加载分类详情页");
+		fenleiDetail : function(val){
+			this.$router.push({name:"classify",query:{"classifyId":val}});
 		}
 	}
 })
 /* 公告页面 */
-var notice ={
+var noticeTpl ={
 	data(){
 		return {
 			noticeJson :null,
@@ -252,7 +252,7 @@ var notice ={
  	}
 }
 /* 公告内容页面*/
-var noticeContent ={
+var noticeContentTpl ={
 	data(){
 		return {
 			title:"",
@@ -275,7 +275,7 @@ var noticeContent ={
 	}
 }
 /* 声明一个头部组件 */
-var headerComponent = Vue.component('header-view',{
+var headerComponentTpl = Vue.component('header-view',{
 	props:['title',"routerName","fixed","rightText"],
 	data(){
 		return {
@@ -302,7 +302,7 @@ var headerComponent = Vue.component('header-view',{
 	}
 })
 /* 用户设置页面 */
-var userSet = {
+var userSetTpl = {
 	data(){
 		return {
 			name:"",
@@ -312,11 +312,12 @@ var userSet = {
 			fixed:false,
 			userRouter:"nameset",
 			pswRouter:"pswset",
-			yhkRouter:"yhkset"
+			yhkRouter:"yhkset",
+			routerName:"custom"
 			
 		}
 	},
-	template : '<div class="setting-view"><header-view :title="title" :fixed="fixed"></header-view>'
+	template : '<div class="setting-view"><header-view :title="title" :fixed="fixed" :routerName="routerName"></header-view>'
 			  +'<section class="set-contaniner">'
 			  +'<div class="setting-list">'
 			  +'<div class="setting-list-item" @click="setting(userRouter,name)"><span class="setting-label">昵称</span><span class="setting-more">{{name}}<i class="icon iconfont icon-more"></i></span></div>'
@@ -343,7 +344,7 @@ var userSet = {
 	}
 }
 /* 修改昵称*/
-var nameset ={
+var namesetTpl ={
 	data(){
 		return {
 			param:"",
@@ -385,7 +386,7 @@ var nameset ={
 	}
 }
 /* 修改密码，验证手机号*/
-var pswset ={
+var pswsetTpl ={
 	data(){
 		return {
 			param:"",
@@ -430,7 +431,7 @@ var pswset ={
 	}
 }
 /* 银行卡设置*/
-var yhkset ={
+var yhksetTpl ={
 	data(){
 		return {
 			param:""
@@ -442,7 +443,7 @@ var yhkset ={
 	}
 }
 /* 重置密码*/
-var resetpsw = {
+var resetpswTpl = {
 	data(){
 		return {
 			title:"设置密码",
@@ -478,7 +479,7 @@ var myCollectionTpl = {
 		return {
 			title:"我的收藏",
 			fixed:false,
-			routerName:'',
+			routerName:'custom',
 			rightText:"编辑",
 			isBind:true,
 			atcive:'goods',
@@ -576,7 +577,7 @@ var myOrderTpl = {
 		return {
 			title:"我的订单",
 			fixed:false,
-			routerName:"",
+			routerName:"custom",
 			order:[],
 			tabAction:[],
 			style:{
@@ -597,7 +598,7 @@ var myOrderTpl = {
 			+'<div class="order-dp" v-for="(item1,key1) in item.dpList">'
 			+'<header class="my-order-list-storeName"><i></i>{{item1.storeName}}<span class="order-state">{{item.stateText}}</span></header>'
 			+'<div class="sp-contanier" v-for="(item2,key2) in item1.spList">'
-			+'<div class="hi-life-list-item" @click="viewSp(item2.id,item.state)">'
+			+'<div class="hi-life-list-item" @click="viewSp(item1.orderId,item.state)">'
 			+'<div class="hi-life-list-item-img"><img :src="item2.img"></div>'
 			+'<div class="hi-life-list-item-content">'
 			+'<div class="hi-life-list-item-summary">{{item2.summary}}</div>'
@@ -614,7 +615,7 @@ var myOrderTpl = {
 			+'<div class="order-dp" v-for="(item1,key1) in item.dpList">'
 			+'<header class="my-order-list-storeName"><i></i>{{item1.storeName}}<span class="order-state">{{item.stateText}}</span></header>'
 			+'<div class="sp-contanier" v-for="(item2,key2) in item1.spList">'
-			+'<div class="hi-life-list-item" @click="viewSp(item2.id,item.state)">'
+			+'<div class="hi-life-list-item" @click="viewSp(item1.orderId,item.state)">'
 			+'<div class="hi-life-list-item-img"><img :src="item2.img"></div>'
 			+'<div class="hi-life-list-item-content">'
 			+'<div class="hi-life-list-item-summary">{{item2.summary}}</div>'
@@ -674,26 +675,30 @@ var myOrderTpl = {
 		},
 		viewSp:function(val,state){
 			debugger;
-			this.$router.push({path:"/myOrder/"+state,params:{spId:val}})
+			this.$router.push({path:"/myOrder/"+state,query:{"orderId":val}})
 		}
 	}
 }
 /* 自定义tab组件 */
 var tab = Vue.component('tab-view',{
-	props:['action'],
+	props:['action','activeId'],
 	data(){
 		return {
-			activeId:'5'
+			active:""
 		}
 	},
 	template:'<section class="my-tab">'
-			+'<div v-for="(item,key) in list"  :class="{mySelected:item.id==activeId}" @click="swapTab(item.id)"><label>{{item.label}}</label></div>'
+			+'<div v-for="(item,key) in list"  :class="{mySelected:item.id==active}" @click="swapTab(item.id)"><label>{{item.label}}</label></div>'
 			+'</section>',
 	mounted:function(){
+		
+	},
+	created:function(){
+		this.active = this.activeId;
 	},
 	methods:{
 		swapTab : function(val){
-			this.activeId = val;
+			this.active = val;
 			this.$emit("changeTab",val);
 		}
 	},
@@ -709,7 +714,7 @@ var myRecommendTpl ={
 		return {
 			title:"我的推荐",
 			fixed:false,
-			routerName:"",
+			routerName:"custom",
 			codeIcon:"./image/recommend/recommend_icon_invit@3x.png",
 			recommedIcon:"./image/recommend/recommend_icon_recom@3x.png",
 			shouyiIcon:"./image/recommend/recommend_icon_profit@3x.png",
@@ -741,7 +746,7 @@ var recommendCodeTpl ={
 		return{
 			title:"我的二维码",
 			fixed:false,
-			routerName:"",
+			routerName:"myRecommend",
 			img:"./image/code.png"
 		}
 	},
@@ -759,32 +764,269 @@ var orderDetailTpl = {
 	data(){
 		return {
 			title:"订单详情",
-			fixed:false,
-			routerName:""
+			routerName:"myOrder",
+			img:"./image/code.png",
+			orderNum:"123456789",
+			createDate:"2017-08-24 15:36",
+			payDate:"2017-08-24 15:50",
+			okBg:"url(./image/orderDetail/finish_bg@3x.png)",
+			notOKBg:"url(./image/orderDetail/obligation_bg@3x.png)",
+			payGb:"url(./image/orderDetail/paid_bg@3x.png)",
+			style:{},
+			spObj:{},
+			youhui:1
 		}
 	},
-	template:'<div class="order-detail-view"><header-view :title="title" :fixed="fixed" :routerName="routerName" ></header-view>'
-			+'<section class="order-detail-bg"><span class="order-detail-state">交易完成</span></section>'
+	template:'<div class="order-detail-view"><section class="order-detail-view-contanier"><header-view :title="title" :routerName="routerName" ></header-view>'
+			+'<section class="order-detail-bg order-detail-ok-bg" :style="style"><span class="order-detail-state">{{stateMes}}</span></section>'
 			+'<section class="order-detail-mes">'
-			+'<div class="order-detail-address"><label>提货地址</label><span>商家地址<i></i></span></div>'
-			+'<div class="order-detail-datetme"><label>提货时间</label><span>2017-08-24 14：00</span></div>'
+			+'<div class="order-detail-address"><label>提货地址</label><span>{{spObj.address}}<i></i></span></div>'
+			+'<div class="order-detail-datetme"><label>提货时间</label><span>{{spObj.pickDate}}</span></div>'
 			+'</section>'
 			+'<section class="order-dp">'
-			+'<header class="my-order-list-storeName"><i></i>唯品会<span class="order-state">交易成功</span></header>'
+			+'<header class="my-order-list-storeName"><i></i>{{spObj.storeName}}<span class="order-state">{{stateText}}</span></header>'
 			+'<div class="sp-contanier">'
-			+'<div class="hi-life-list-item">'
-			+'<div class="hi-life-list-item-img"><img src="/"></div>'
+			+'<div class="hi-life-list-item" v-for="(item,key) in spObj.spList">'
+			+'<div class="hi-life-list-item-img"><img :src="item.img"></div>'
 			+'<div class="hi-life-list-item-content">'
-			+'<div class="hi-life-list-item-summary">魔都新店LIST送上，终于熬过了40度的高 温天，冰凉降温</div>'
-			+'<div class="hilife-list-detail"><span class="sp-sales">¥189.68</span><span class="sp-count">x1</span></div>'
+			+'<div class="hi-life-list-item-summary">{{item.summary}}</div>'
+			+'<div class="hilife-list-detail"><span class="sp-sales">¥{{item.sales}}</span><span class="sp-count">x{{item.count}}</span></div>'
 			+'</div>'
 			+'</div>'
 			+'</div>'
 			+'</section>'
 			+'<section class="order-detail-summary">'
-			+'<div>商品金额</div>'
-			+'<div>抵扣福分</div>'
-			+'<div>付款方式</div>'
+			+'<div>商品金额<span>{{orderSalesCount}}</span></div>'
+			+'<div>抵扣福分<span>{{youhui}}</span></div>'
+			+'<div>付款方式<span>{{spObj.payType}}</span></div>'
 			+'</section>'
+			+'<section class="pay-money">实付金额<span>{{realPayMoney}}</span></section>'
+			+'<section class="order-pay-summary" v-if="spObj.state!= 2">'
+			+'<header>订单密码:<span>{{spObj.orderPsw}}</span></header>'
+			+'<div class="sj-code">'
+			+'<div class="sj-code-border"><div class="sj-code-img"><img :src="spObj.code"></div>'
+			+'<div class="sj-code-help">商家扫码即可消费</div>'
 			+'</div>'
+			+'</div>'
+			+'</section>'
+			+'<footer>'
+			+'<div>订单编号:<span>{{spObj.orderNum}}</span></div>'
+			+'<div>创建时间:<span>{{spObj.createDate}}</span></div>'
+			+'<div v-if="spObj.payDate!=\'\'">付款时间:<span>{{spObj.payDate}}</span></div>'
+			+'</footer>'
+			+'<section class="bottom-btn" v-if="isSowBtn"><div @click="oper(spObj.state)" class="oper-btn-default" :class="{\'oper-btn\':spObj.state==2}">{{btnText}}</div></section>'
+			+'</section>'
+			+'</div>',
+	created:function(){
+		var _this = this;
+		axios.get(serverUrl+"/order/"+this.$route.query.orderId+".json")
+		.then(function(response){
+			_this.spObj = response.data;
+			if(_this.spObj.state == "4"){
+				_this.style.background=_this.okBg;
+				_this.style.backgroundSize="100% 100%";
+			}else if(_this.spObj.state == "3"){
+				_this.style.background = _this.payGb;
+				_this.style.backgroundSize = "100% 100%";
+			}else{
+				_this.style.background = _this.notOKBg;
+				_this.style.backgroundSize="100% 100%";
+			}
+		})
+		.catch(function(){
+			_this.$toast("加载失败");
+		});
+	},
+	computed:{
+		orderSalesCount:function(){
+			var count=0;
+			for(var key in this.spObj.spList){
+				count += this.spObj.spList[key].count*this.spObj.spList[key].sales;
+			}
+			return count;
+		},
+		realPayMoney:function(){
+			var count=0;
+			for(var key in this.spObj.spList){
+				count += this.spObj.spList[key].count*this.spObj.spList[key].sales;
+			}
+			return count-this.youhui;
+		},
+		isSowBtn:function(){
+			if(this.spObj.state<2 || this.spObj.state=="4"){
+				return false;
+			}else{
+				return true;
+			}
+			
+		},
+		btnText:function(){
+			if(this.spObj.state == "3"){
+				return "申请退款";
+			}
+			if(this.spObj.state == "2"){
+				return "立即支付";
+			}
+		},
+		stateMes:function(){
+			if(this.spObj.state == "0"){
+				return "卖家已退款";
+			}
+			if(this.spObj.state == "1"){
+				return "卖家退款中";
+			}
+			if(this.spObj.state == "2"){
+				return "买家待付款";
+			}
+			if(this.spObj.state == "3"){
+				return "买家已付款";
+			}
+			if(this.spObj.state == "4"){
+				return "交易完成";
+			}
+		},
+		stateText:function(){
+			if(this.spObj.state == "0"){
+				return "已退款";
+			}
+			if(this.spObj.state == "1"){
+				return "退款中";
+			}
+			if(this.spObj.state == "2"){
+				return "待付款";
+			}
+			if(this.spObj.state == "3"){
+				return "已付款";
+			}
+			if(this.spObj.state == "4"){
+				return "交易完成";
+			}
+		}
+	},
+	methods:{
+		oper:function(val){
+			var _this =this;
+			if(val == "2"){
+				this.$router.push({name:preferentialPay});
+			}
+			if(val == "3"){
+				this.$messagebox({
+					title:"提示",
+					message:"确定要退款么？",
+					showCancelButton:true
+				})
+				.then(function(action){
+					if(action == "confirm"){
+						_this.$toast({
+							message: '退款成功',
+							duration: 500
+						});
+					}
+				});
+			}
+		}
+	}
+}
+/* 分类页面 */
+var classifyTpl = {
+	data(){
+		return {
+			classifyList:[]
+		}
+	},
+	template:'<div class="header-seach-comm ">'
+			+'<header><div class="share"><i class="back-img"></i></div>'
+			+'<div class="search-bar"><div class="search-bar-tool"><input type="text" placeholder="搜索" @click.prevent="toSearch"></div></div>'
+			+'<div class="share"><i class="share-img"></i></div></header>'
+			+'<section class="classify-content">'
+			+'<div class="hi-life-list-item" v-for="(item,key) in classifyList" @click="goStore(item.id)">'
+			+'<div class="hi-life-list-item-img"><img :src="item.img"></div>'
+			+'<div class="hi-life-list-item-content">'
+			+'<h3 class="hi-life-list-item-title">{{item.title}}<span class="store-distance">{{item.distance}}m</span></h3>'
+			+'<div class="hi-life-list-item-summary">{{item.summary}}</div>'
+			+'<div class="hi-life-list-item-other">销量:<span>{{item.sales}}</span></div>'
+			+'</div>'
+			+'</div>'
+			+'</section></div>',
+	created:function(){
+		var _this = this;
+		axios.get(serverUrl+"/classify.json")
+		.then(function(response){
+			_this.classifyList = response.data;
+		})
+		.catch(function(){
+			_this.$toast("加载失败");
+		})
+	},
+	methods:{
+		toSearch:function(){
+			
+		},
+		goStore:function(val){
+			this.$router.push({name:"store",query:{storeId:val}});
+		}
+	}
+}
+
+/* 商店 页面 */
+var storeTpl = {
+	data(){
+		return {
+			store:{},
+			style:{},
+			tabId:"1",
+			height:{
+				height:""
+			},
+			active:"1",
+			tabAction:[{id:"1",label:"粤菜"},{id:"2",label:"特色菜"},{id:"3",label:"创意菜"},{id:"4",label:"新派料理"},{id:"5",label:"优惠套餐"}]
+		}
+	},
+	template:'<div class="store-view">'
+			+'<section class="store-banner" :style="style"><img :src="store.storeImg"><i class="store-back"></i><i class="store-share"></i><i class="store-collection"></i></section>'
+			+'<section class="store-mess">'
+			+'<header><div class="store-title">{{store.storeName}}</div><small>{{store.sort}}</small></header>'
+			+'<div class="store-mess-content">'
+			+'<div class="address-icon"><i></i></div>'
+			+'<div class="address-text"><div class="store-address">{{store.address}}</div><div class="store-distance">距您<span>{{store.distance}}米</span></div></div>'
+			+'<div class="telphone"><i></i></div>'
+			+'</div>'
+			+'</section>'
+			+'<section>'
+			+'<div class="scorll-tab">'
+			+'<tab-view :action="tabAction" @changeTab="changeTab" :activeId="tabId"></tab-view>'
+			+'</div>'
+			+'<div class="store-menu-list" :style="height">'
+			+'<mt-tab-container v-model="active">'
+			+'<mt-tab-container-item v-for="(item,key) in store.menu" :id="item.menuId" >'
+			+'<div class="hi-life-list-item" v-for="(item1,key) in item.menuList">'
+			+'<div class="hi-life-list-item-img"><img src="/"></div>'
+			+'<div class="hi-life-list-item-content">'
+			+'<h3>{{item1.name}}</h3>'
+			+'<div class="hi-life-list-item-summary">{{item1.summary}}</div>'
+			+'<div class="hilife-list-detail"><span class="sp-sales">¥{{item1.sales}}</span><div class="hi-life-list-item-oper"></div></div>'
+			+'</div>'
+			+'</div>'
+			+'</mt-tab-container-item>'
+			+'</mt-tab-container>'
+			+'</div>'
+			+'</section>'
+			+'<div class="store-shop-cart"><div class="youhui-btn">优惠买单</div></div>'
+			+'</div>',
+	created:function(){
+		var _this = this;
+		this.height.height = document.body.clientHeight  - 372 + "px";
+		axios.get(serverUrl+"/store.json")
+		.then(function(response){
+			_this.store = response.data;
+		})
+		.catch(function(){
+			_this.$toast("加载失败");
+		});
+	},
+	methods:{
+		changeTab:function(val){
+			this.active = val;
+		}
+	}
 }

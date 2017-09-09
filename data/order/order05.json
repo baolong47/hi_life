@@ -1,0 +1,22 @@
+{
+	"orderId":"order05",
+	"state":"1",
+	"pickDate":"2017-08-24 14:00",
+	"storeName": "云上生活",
+	"payType":"快捷支付",
+	"orderPsw": "123456789",
+	"orderNum": "123456789",
+	"createDate": "2017-08-24 15:36",
+	"payDate":"2017-08-24 15:50",
+	"code":"./image/code.png",
+	"address":"金政软件技术",
+	"spList":[
+		{
+        	"id":"5",
+            "img": "/",
+            "summary": "魔都新店LIST送上，终于熬过了40度的高 温天，冰凉降温",
+            "sales": 189.68,
+            "count": 1
+        }
+	]
+}
