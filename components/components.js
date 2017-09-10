@@ -978,6 +978,7 @@ var storeTpl = {
 			height:{
 				height:""
 			},
+			cartSize:0,
 			active:"1",
 			tabAction:[{id:"1",label:"粤菜"},{id:"2",label:"特色菜"},{id:"3",label:"创意菜"},{id:"4",label:"新派料理"},{id:"5",label:"优惠套餐"}]
 		}
@@ -999,19 +1000,19 @@ var storeTpl = {
 			+'<div class="store-menu-list" :style="height">'
 			+'<mt-tab-container v-model="active">'
 			+'<mt-tab-container-item v-for="(item,key) in store.menu" :id="item.menuId" >'
-			+'<div class="hi-life-list-item" v-for="(item1,key) in item.menuList">'
+			+'<div class="hi-life-list-item" v-for="(item1,key) in item.menuList" @click="toStoreDetail(item1.goodId)">'
 			+'<div class="hi-life-list-item-img"><img src="/"></div>'
 			+'<div class="hi-life-list-item-content">'
 			+'<h3>{{item1.name}}</h3>'
 			+'<div class="hi-life-list-item-summary">{{item1.summary}}</div>'
-			+'<div class="hilife-list-detail"><span class="sp-sales">¥{{item1.sales}}</span><div class="hi-life-list-item-oper"></div></div>'
+			+'<div class="hilife-list-detail"><span class="sp-sales">¥{{item1.sales}}</span><div class="hi-life-list-item-oper" @click.stop="addSp(item1.goodId)"></div></div>'
 			+'</div>'
 			+'</div>'
 			+'</mt-tab-container-item>'
 			+'</mt-tab-container>'
 			+'</div>'
 			+'</section>'
-			+'<div class="store-shop-cart"><i class="shop-cart"></i><div class="youhui-btn">优惠买单</div></div>'
+			+'<div class="store-shop-cart"><div class="shop-cart" @click="toCart"><i v-if="cartSize>0">{{cartSize}}</i></div><div class="youhui-btn">优惠买单</div></div>'
 			+'</div>',
 	created:function(){
 		var _this = this;
@@ -1019,6 +1020,7 @@ var storeTpl = {
 		axios.get(serverUrl+"/store.json")
 		.then(function(response){
 			_this.store = response.data;
+			_this.cartSize = response.data.cartSize;
 		})
 		.catch(function(){
 			_this.$toast("加载失败");
@@ -1027,6 +1029,19 @@ var storeTpl = {
 	methods:{
 		changeTab:function(val){
 			this.active = val;
+		},
+		toCart:function(){
+			this.$router.push({name:"shopCar"});
+		},
+		addSp:function(val){  // 添加商品的id
+			this.cartSize++;
+		},
+		toStoreDetail:function(val){
+			this.$router.push({name:"goodsDetail",query:{goodsId:val}});
 		}
 	}
+}
+/* 商品详情页 */
+var goodsDetailTpl = {
+	template:'<div>商品详情页</div>'
 }

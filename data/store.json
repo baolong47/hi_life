@@ -5,6 +5,7 @@
 	"distance": 400,
 	"telphone": "13689598536",
 	"storeImg":"./image/store/store-banner.png",
+	"cartSize":0,
 	"menu": [
 		{
 			"menuName": "粤菜",

@@ -1674,6 +1674,7 @@ small{
 	padding-left: .15rem;
 }
 .shop-cart{
+	position: relative;
 	display: inline-block;
 	height: .47rem;
 	width: .47rem;
@@ -1681,4 +1682,17 @@ small{
 	margin-top: -.1rem;
 	background: url(../image/store_list_add_cart@3x.png);
 	background-size: 100% 100%;
+}
+.shop-cart>i{
+	position: absolute;
+	z-index: 1;
+	right: 0;
+	height: .16rem;
+	width: .16rem;
+	background-color: red;
+	color: #FFFFFF;
+	line-height: .16rem;
+    font-style: normal;
+    text-align: center;
+	border-radius: 50%;
 }
