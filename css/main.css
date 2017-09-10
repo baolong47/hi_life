@@ -965,6 +965,7 @@ hr {
 .hi-life-list-item-content h3 {
 	height: .24rem;
 	color: #333;
+	clear: both;
 }
 
 .hi-life-list-item-content h3 span {
