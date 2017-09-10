@@ -951,7 +951,10 @@ hr {
 	padding: .15rem 0;
 	border-bottom: .01rem solid lightgray;
 }
-
+.hi-life-list-item-img img{
+	height: .9rem;
+	width: .9rem;
+}
 .hi-life-list-item-content {
 	flex: auto;
 	position: relative;
