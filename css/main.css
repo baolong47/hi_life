@@ -1670,3 +1670,15 @@ small{
     background: -webkit-linear-gradient(left, rgb(255, 161, 38), rgb(255, 139, 32));
     background: linear-gradient(to right, rgb(255, 161, 38), rgb(255, 139, 32));
 }
+.store-view .hi-life-list-item{
+	padding-left: .15rem;
+}
+.shop-cart{
+	display: inline-block;
+	height: .47rem;
+	width: .47rem;
+	margin-left: .2rem;
+	margin-top: -.1rem;
+	background: url(../image/store_list_add_cart@3x.png);
+	background-size: 100% 100%;
+}

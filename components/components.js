@@ -1011,7 +1011,7 @@ var storeTpl = {
 			+'</mt-tab-container>'
 			+'</div>'
 			+'</section>'
-			+'<div class="store-shop-cart"><div class="youhui-btn">优惠买单</div></div>'
+			+'<div class="store-shop-cart"><i class="shop-cart"></i><div class="youhui-btn">优惠买单</div></div>'
 			+'</div>',
 	created:function(){
 		var _this = this;
